@@ -1,0 +1,89 @@
+---
+title: "Data Version Control"
+author:
+  name: Mainye B
+  site-url: nyab.notion.com
+format:
+  html: 
+    theme: darkly
+    toc: true
+    number-sections: true
+    colorlinks: true
+---
+
+# What is it?
+Data version control is way of making a reproducible journal to replicate your data science workflow. Imagine when you are working with teams everyone has their own way of doing things but how can we make a consensus to have unified way of 
+working together so that you don't step on each others toes. On the other hand, 
+is there a way of managing data science projects a bit easier to be able to track project a bit better? We will discuss that in this presentation.
+
+They are several tools that have been created to address this problem. They include the following:
+
+- [DVC](https://dvc.org/)
+- [Mlflow](https://mlflow.org/)
+- [Neptuneai](https://neptune.ai/)
+- [Delta Lake](https://delta.io/)
+
+::: {.callout}
+We'll go through DVC, great expectations and Makefiles
+:::
+
+# Why is it important?
+As someone who has worked on various projects in data science and machine learning. I have discovered that the path from idea to product needs a fricitionless workflow this will allow you to think about implementing ideas than handling all that goes on in the background.
+
+It is important mostly because it can get very confusing when handling projects and keeping track of your experiments since in data science we don't have predefined outputs. We can make a report, dashboard, an application and API. They are so many things that go into that data importing, EDA, feature engineering and modeling which can take so many routes to reach your destination.
+
+> add image of a winding path
+
+## Needs
+- How can we track different parts of work?
+- How can we record hyperparameters in different versions of our experiments?
+- How about storing metadata of our projects like models and slices of data?
+- How about metrics how can those be put together in a more unified way?
+- Can I replicate their work 100% or 95%?
+
+> All the solutions above can help us with that.
+
+### Example
+
+
+::: {.callout-important}
+**[Medical Cost Personal Datasets](https://www.kaggle.com/datasets/mirichoi0218/insurance)**
+:::
+
+::: {.callout-tip}
+**[Telco dataset](https://www.kaggle.com/datasets/blastchar/telco-customer-churn)**
+:::
+
+The dataset has a number of observations and measurements that a crucial for a prediction task which is finding churn. That is, the likelihood that a client will stop using the telecommunications company. That is, if you are looking at the second dataset.
+
+
+Other very common metrics that you can be asked to calculate in the data science team include:
+
+| Metric 	| Explanation 	| Associated link 	|
+|---------|:-----|------:|
+| Hypothesis testing 	| Making the website better via focus group testing. 	| https://medium.com/@gajendra.k.s/hypothesis-testing-33aaeeff5336 	|
+| Conversion rate 	| time it takes for a client to move from discovery to becoming a paying customer. 	| https://www.geeksforgeeks.org/conversion-rate-what-is-it-how-to-calculate-it/ 	|
+| Customer life time value (LTV) 	| how much a client(s) will generate in their lifetime. 	| https://www.datacamp.com/tutorial/customer-life-time-value 	|
+| Recommendation systems 	| how can we sell cross sell our existing products better 	| https://medium.com/@Karthickk_Rajah/clustering-based-algorithms-in-recommendation-system-205fcb15bc9b 	|
+| Optimization 	| adjusting cost of product this involves using specific techniques to find the maximum or minimum value of something to reap better revenues 	| https://towardsdatascience.com/production-fixed-horizon-planning-with-python-8dd38b468e86 	|
+
+
+### Data science process   
+
+We will be referencing a cool notebook that someone in the kaggle community had done. Here's the original [notebook](https://www.kaggle.com/code/hely333/eda-regression).
+
+The person did are really cool job. However, I wish more one hot encoding was done and exploring techniques such as OneR were done. We'll explore that later. At the moment, let's set out attention to the data science process. Add a more detail from the wiki and the book below.
+
+
+
+::: {#fig-datasci layout-ncol=2}
+[![Data science process](Screenshot from 2023-02-13-10-57-10.png)](https://www.manning.com/books/data-science-with-python-and-dask){#fig-process}
+
+![Transforming-data](Screenshot from 2023-02-13-10-57-41.png){width=100}
+
+What is done in data science
+:::
+
+Often times you can easily just make a notebook, and your work is done. They are tools that allow you to do [scheduled notebook reruns](https://www.kaggle.com/discussions/getting-started/293861) on kaggle, using [papermill](https://papermill.readthedocs.io/en/latest/) and [Sagemaker](https://towardsdatascience.com/how-to-schedule-jupyter-notebooks-in-amazon-sagemaker-d50fa1c8c0ad).
+
+### Try something different with DVC and Makefiles
