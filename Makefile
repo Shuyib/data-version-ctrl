@@ -104,7 +104,15 @@ docker_push: docker_build
   # push to registry
   # docker tag <my-image> registry.digitalocean.com/<my-registry>/<my-image>
   # docker push registry.digitalocean.com/<my-registry>/<my-image>  
-  
+
+quarto_preview_html:
+	# preview html
+	quarto preview data_version_control_presentation.qmd
+	
+quarto_preview_pdf:
+	# preview pdf
+	quarto preview data_version_control_presentation.qmd --to pdf
+
  
 # .PHONY tells make that these targets do not represent actual files
 .PHONY: activate format clean lint test build run docker_build docker_run docker_push docker_clean docker_run_test
