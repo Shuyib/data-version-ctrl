@@ -1,10 +1,12 @@
 ---
 title: "Data Version Control"
+jupyter: python3
 author:
   name: Mainye B
   site-url: nyab.notion.com
 format:
   html: 
+    code-fold: true
     theme: darkly
     toc: true
     number-sections: true
@@ -22,6 +24,7 @@ They are several tools that have been created to address this problem. They incl
 - [Mlflow](https://mlflow.org/)
 - [Neptuneai](https://neptune.ai/)
 - [Delta Lake](https://delta.io/)
+- [Metaflow](https://metaflow.org/)
 
 ::: {.callout}
 We'll go through DVC, great expectations and Makefiles
@@ -43,7 +46,7 @@ It is important mostly because it can get very confusing when handling projects 
 
 > All the solutions above can help us with that.
 
-### Example
+### Examples
 
 
 ::: {.callout-important}
@@ -86,4 +89,71 @@ What is done in data science
 
 Often times you can easily just make a notebook, and your work is done. They are tools that allow you to do [scheduled notebook reruns](https://www.kaggle.com/discussions/getting-started/293861) on kaggle, using [papermill](https://papermill.readthedocs.io/en/latest/) and [Sagemaker](https://towardsdatascience.com/how-to-schedule-jupyter-notebooks-in-amazon-sagemaker-d50fa1c8c0ad).
 
-### Try something different with DVC and Makefiles
+## Try something different with DVC and Makefiles
+
+### Makefile
+In most Unix systems (Mac Os and Linux) you'll find that the `make` command is already installed. If not it very easy to install it. 
+
+::: {.callout-tip}
+How to install
+
+
+```{bash}
+# update packages
+sudo apt-get update
+# just say yes to make
+sudo apt-get -y install make
+# what version was installed
+make -v
+```
+:::
+
+Using these files makes it easy to hide the complexity of running commands that you require to follow best practices as an example:
+
+> Running in bash
+```{bash}
+#| echo: false
+
+# This code runs the pylint tool with specific configurations to check for errors in Python files.
+# The `--disable=R,C` flag disables the pylint checks for code style and convention violations.
+# The `--errors-only` flag ensures that only error messages are displayed.
+# The `*.py utils/*.py testing/*.py` argument specifies the files and directories to be checked by pylint.
+pylint --disable=R,C --errors-only *.py utils/*.py testing/*.py
+```
+
+Code Linting Linting is crucial for maintaining high-quality code. It helps catch errors and inconsistencies early on, reducing bugs and improving readability.
+
+Why Lint?
+
+* Reduced bugs: Catch errors before runtime.
+* Improved readability: Enforce consistent coding standards.
+* Faster development: Identify issues quickly.
+
+> Within your Makefile
+
+```{bash}
+#| echo: false
+lint: activate install format
+	# flake8 or #pylint
+	pylint --disable=R,C --errors-only *.py utils/*.py testing/*.py
+```
+
+> In Terminal
+
+```{bash}
+#| echo: false
+make lint
+```
+
+
+::: {.callout-tip}
+Instead of memorizing long commands you can store them in a Makefile and run them in a single command
+for example `make all` will run each command until the end of the file. Also, [Continous Integration/Continous Deployment](https://www.youtube.com/watch?v=2wSBAkJGcug)
+:::
+
+### Using a Makefile for Machine Learning Workflow
+At this juncture, you are probably acknowledging how much a Makefile is amazing. Get this you can use it with any language you prefer for data science and machine learning. Here are more [examples in Julia and R](https://gist.github.com/Shuyib/ae87774fd82c69706803725db9a681dc)
+
+Let create a Makefile to assist us with **Making** a machine learning workflow to help us handle the project better.
+
+

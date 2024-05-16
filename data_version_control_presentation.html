@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -18,7 +18,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
 </style>
@@ -46,14 +46,18 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-is-it" id="toc-what-is-it" class="nav-link active" data-scroll-target="#what-is-it"><span class="header-section-number">1</span> What is it?</a></li>
-  <li><a href="#why-is-it-important" id="toc-why-is-it-important" class="nav-link" data-scroll-target="#why-is-it-important"><span class="header-section-number">2</span> Why is it important?</a>
+  <li><a href="#what-is-it" id="toc-what-is-it" class="nav-link active" data-scroll-target="#what-is-it"><span class="toc-section-number">1</span>  What is it?</a></li>
+  <li><a href="#why-is-it-important" id="toc-why-is-it-important" class="nav-link" data-scroll-target="#why-is-it-important"><span class="toc-section-number">2</span>  Why is it important?</a>
   <ul class="collapse">
-  <li><a href="#needs" id="toc-needs" class="nav-link" data-scroll-target="#needs"><span class="header-section-number">2.1</span> Needs</a>
+  <li><a href="#needs" id="toc-needs" class="nav-link" data-scroll-target="#needs"><span class="toc-section-number">2.1</span>  Needs</a>
   <ul class="collapse">
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">2.1.1</span> Example</a></li>
-  <li><a href="#data-science-process" id="toc-data-science-process" class="nav-link" data-scroll-target="#data-science-process"><span class="header-section-number">2.1.2</span> Data science process</a></li>
-  <li><a href="#try-something-different-with-dvc-and-makefiles" id="toc-try-something-different-with-dvc-and-makefiles" class="nav-link" data-scroll-target="#try-something-different-with-dvc-and-makefiles"><span class="header-section-number">2.1.3</span> Try something different with DVC and Makefiles</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"><span class="toc-section-number">2.1.1</span>  Examples</a></li>
+  <li><a href="#data-science-process" id="toc-data-science-process" class="nav-link" data-scroll-target="#data-science-process"><span class="toc-section-number">2.1.2</span>  Data science process</a></li>
+  </ul></li>
+  <li><a href="#try-something-different-with-dvc-and-makefiles" id="toc-try-something-different-with-dvc-and-makefiles" class="nav-link" data-scroll-target="#try-something-different-with-dvc-and-makefiles"><span class="toc-section-number">2.2</span>  Try something different with DVC and Makefiles</a>
+  <ul class="collapse">
+  <li><a href="#makefile" id="toc-makefile" class="nav-link" data-scroll-target="#makefile"><span class="toc-section-number">2.2.1</span>  Makefile</a></li>
+  <li><a href="#using-a-makefile-for-machine-learning-workflow" id="toc-using-a-makefile-for-machine-learning-workflow" class="nav-link" data-scroll-target="#using-a-makefile-for-machine-learning-workflow"><span class="toc-section-number">2.2.2</span>  Using a Makefile for Machine Learning Workflow</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -93,8 +97,9 @@ ul.task-list li input[type="checkbox"] {
 <li><a href="https://mlflow.org/">Mlflow</a></li>
 <li><a href="https://neptune.ai/">Neptuneai</a></li>
 <li><a href="https://delta.io/">Delta Lake</a></li>
+<li><a href="https://metaflow.org/">Metaflow</a></li>
 </ul>
-<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout callout callout-style-simple no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -124,14 +129,14 @@ ul.task-list li input[type="checkbox"] {
 <blockquote class="blockquote">
 <p>All the solutions above can help us with that.</p>
 </blockquote>
-<section id="example" class="level3" data-number="2.1.1">
-<h3 data-number="2.1.1" class="anchored" data-anchor-id="example"><span class="header-section-number">2.1.1</span> Example</h3>
-<div class="callout callout-style-default callout-important callout-titled">
+<section id="examples" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="examples"><span class="header-section-number">2.1.1</span> Examples</h3>
+<div class="callout-important callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
+<div class="callout-caption-container flex-fill">
 Important
 </div>
 </div>
@@ -139,12 +144,12 @@ Important
 <p><strong><a href="https://www.kaggle.com/datasets/mirichoi0218/insurance">Medical Cost Personal Datasets</a></strong></p>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
+<div class="callout-caption-container flex-fill">
 Tip
 </div>
 </div>
@@ -199,21 +204,21 @@ Tip
 <section id="data-science-process" class="level3" data-number="2.1.2">
 <h3 data-number="2.1.2" class="anchored" data-anchor-id="data-science-process"><span class="header-section-number">2.1.2</span> Data science process</h3>
 <p>We will be referencing a cool notebook that someone in the kaggle community had done. Here’s the original <a href="https://www.kaggle.com/code/hely333/eda-regression">notebook</a>.</p>
-<p>The person did are really cool job. However, I wish more one hot encoding was done and exploring techniques such as OneR were done. We’ll explore that later. At the moment, let’s set out attention to the data science process. Add a more detail from the wiki.</p>
+<p>The person did are really cool job. However, I wish more one hot encoding was done and exploring techniques such as OneR were done. We’ll explore that later. At the moment, let’s set out attention to the data science process. Add a more detail from the wiki and the book below.</p>
 <div id="fig-datasci" class="quarto-layout-panel">
 <figure class="figure">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 50.0%;justify-content: center;">
 <figure class="figure">
 <p><a href="https://www.manning.com/books/data-science-with-python-and-dask" id="fig-process"><img src="Screenshot%20from%202023-02-13-10-57-10.png" class="img-fluid figure-img"></a></p>
-<figcaption class="figure-caption">Data science process</figcaption>
+<p></p><figcaption class="figure-caption">Data science process</figcaption><p></p>
 </figure>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Screenshot%20from%202023-02-13-10-57-41.png" class="img-fluid figure-img" width="100"></p>
-<figcaption class="figure-caption">Transforming-data</figcaption>
+<p></p><figcaption class="figure-caption">Transforming-data</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -223,8 +228,79 @@ Tip
 </div>
 <p>Often times you can easily just make a notebook, and your work is done. They are tools that allow you to do <a href="https://www.kaggle.com/discussions/getting-started/293861">scheduled notebook reruns</a> on kaggle, using <a href="https://papermill.readthedocs.io/en/latest/">papermill</a> and <a href="https://towardsdatascience.com/how-to-schedule-jupyter-notebooks-in-amazon-sagemaker-d50fa1c8c0ad">Sagemaker</a>.</p>
 </section>
-<section id="try-something-different-with-dvc-and-makefiles" class="level3" data-number="2.1.3">
-<h3 data-number="2.1.3" class="anchored" data-anchor-id="try-something-different-with-dvc-and-makefiles"><span class="header-section-number">2.1.3</span> Try something different with DVC and Makefiles</h3>
+</section>
+<section id="try-something-different-with-dvc-and-makefiles" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="try-something-different-with-dvc-and-makefiles"><span class="header-section-number">2.2</span> Try something different with DVC and Makefiles</h2>
+<section id="makefile" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="makefile"><span class="header-section-number">2.2.1</span> Makefile</h3>
+<p>In most Unix systems (Mac Os and Linux) you’ll find that the <code>make</code> command is already installed. If not it very easy to install it.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>How to install</p>
+<pre class="{bash}"><code># update packages
+sudo apt-get update
+# just say yes to make
+sudo apt-get -y install make
+# what version was installed
+make -v</code></pre>
+</div>
+</div>
+<p>Using these files makes it easy to hide the complexity of running commands that you require to follow best practices as an example:</p>
+<blockquote class="blockquote">
+<p>Running in bash</p>
+</blockquote>
+<pre class="{bash}"><code>#| echo: false
+
+# This code runs the pylint tool with specific configurations to check for errors in Python files.
+# The `--disable=R,C` flag disables the pylint checks for code style and convention violations.
+# The `--errors-only` flag ensures that only error messages are displayed.
+# The `*.py utils/*.py testing/*.py` argument specifies the files and directories to be checked by pylint.
+pylint --disable=R,C --errors-only *.py utils/*.py testing/*.py</code></pre>
+<p>Code Linting Linting is crucial for maintaining high-quality code. It helps catch errors and inconsistencies early on, reducing bugs and improving readability.</p>
+<p>Why Lint?</p>
+<ul>
+<li>Reduced bugs: Catch errors before runtime.</li>
+<li>Improved readability: Enforce consistent coding standards.</li>
+<li>Faster development: Identify issues quickly.</li>
+</ul>
+<blockquote class="blockquote">
+<p>Within your Makefile</p>
+</blockquote>
+<pre class="{bash}"><code>#| echo: false
+lint: activate install format
+    # flake8 or #pylint
+    pylint --disable=R,C --errors-only *.py utils/*.py testing/*.py</code></pre>
+<blockquote class="blockquote">
+<p>In Terminal</p>
+</blockquote>
+<pre class="{bash}"><code>#| echo: false
+make lint</code></pre>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Instead of memorizing long commands you can store them in a Makefile and run them in a single command for example <code>make all</code> will run each command until the end of the file. Also, <a href="https://www.youtube.com/watch?v=2wSBAkJGcug">Continous Integration/Continous Deployment</a></p>
+</div>
+</div>
+</section>
+<section id="using-a-makefile-for-machine-learning-workflow" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="using-a-makefile-for-machine-learning-workflow"><span class="header-section-number">2.2.2</span> Using a Makefile for Machine Learning Workflow</h3>
+<p>At this juncture, you are probably acknowledging how much a Makefile is a . Get this you can use it with any language you prefer for data science and machine learning. Here are more <a href="https://gist.github.com/Shuyib/ae87774fd82c69706803725db9a681dc">examples in Julia and R</a></p>
+<p>Let create a Makefile to assist us with <strong>Making</strong> a machine learning workflow to help us handle the project better.</p>
 </section>
 </section>
 </section>
@@ -258,23 +334,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
+    target: function(trigger) {
+      return trigger.previousElementSibling;
     }
   });
   clipboard.on('success', function(e) {
@@ -339,92 +401,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
