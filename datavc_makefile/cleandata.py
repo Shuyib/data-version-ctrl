@@ -153,7 +153,7 @@ def encode_data(data: pd.DataFrame, version) -> pd.DataFrame:
     ----------
     data: pd.DataFrame :
         The data to encode.
-    
+
     version: str :
         The version of the data to save.
 
@@ -175,10 +175,10 @@ def encode_data(data: pd.DataFrame, version) -> pd.DataFrame:
     # make a transform directory if it does not exist
     if not os.path.exists("data/transform"):
         os.makedirs("data/transform")
-    print("label encoding sex, smoker, and region columns") 
-    data.to_parquet(f"data/transform/insurance_{version}.parquet") # more efficient
-    #data.to_pickle(f"data/transform/insurance_{version}.pkl") # less efficient
-    #data.to_csv(f"data/transform/insurance_{version}.csv") # less efficient
+    print("label encoding sex, smoker, and region columns")
+    data.to_parquet(f"data/transform/insurance_{version}.parquet")  # more efficient
+    # data.to_pickle(f"data/transform/insurance_{version}.pkl") # less efficient
+    # data.to_csv(f"data/transform/insurance_{version}.csv") # less efficient
     return data.transpose()
 
 
