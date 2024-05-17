@@ -98,3 +98,10 @@ eda: clean_data
 	@echo "Performing EDA"
 	@echo "This is step 5: EDA"
 	@echo "The output folder has an EDA report in output/eda"
+	$(PYTHON) eda.py --input data/transform/insurance_000.parquet --output output/eda_combined_plots.png
+
+split_data: clean_data eda
+	@echo "Splitting data"
+	@echo "This is step 6: split data"
+	@echo "The output folder has a split dataset in output/split"
+	
