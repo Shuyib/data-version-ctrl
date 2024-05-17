@@ -22,6 +22,12 @@ import numpy as np
 import seaborn as sns
 from matplotlib import pyplot as plt
 
+# see versions of libraries
+print(f"pandas version: {pd.__version__}")
+print(f"numpy version: {np.__version__}")
+print(f"matplotlib version: {plt.matplotlib.__version__}")
+print(f"seaborn version: {sns.__version__}")
+
 
 # use ggplot style for the plots
 plt.style.use("ggplot")
