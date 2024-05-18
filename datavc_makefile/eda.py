@@ -214,13 +214,13 @@ def main():
     args = parser.parse_args()
 
     # Load the data
-    df2 = pd.read_parquet(args.input)  #noqa:W0612
+    df2 = pd.read_parquet(args.input)  # noqa:W0612
 
     # Combine the plots
     combine_plots()
 
     # Save the combined figure
-    plt.savefig(args.output)  #noqa:W0612
+    plt.savefig(args.output)  # noqa:W0612
 
 
 if __name__ == "__main__":
