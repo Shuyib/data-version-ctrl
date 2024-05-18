@@ -100,8 +100,19 @@ eda: clean_data
 	@echo "The output folder has an EDA report in output/eda"
 	$(PYTHON) eda.py --input data/transform/insurance_000.parquet --output output/eda_combined_plots.png
 
-split_data: clean_data eda
+split_data: eda
 	@echo "Splitting data"
 	@echo "This is step 6: split data"
-	@echo "The output folder has a split dataset in output/split"
-	
+	@echo "The output folder has a split dataset in data/transform/validation"
+	@echo "For train test split"
+	$(PYTHON) split_data.py --data data/transform/insurance_000.parquet --strategy train_test_split --test_size 0.2
+	@echo "For kfold split"
+	#$(PYTHON) split_data.py --data data/transform/insurance_000.parquet --strategy kfold --test_size 0.2 --n_splits 5
+
+evaluate_model: split_data
+	@echo "Evaluating model"
+	@echo "This is step 7: evaluate model"
+	@echo "The output folder has a model evaluation in output/model_evaluation"
+	#$(PYTHON) evaluate_model.py --data data/transform/validation/insurance_000_train.parquet --model_name linear_regression --model_output model_output/linear_regression_000.pkl
+	#$(PYTHON) evaluate_model.py --data data/transform/validation/insurance_000_train.parquet --model_name random_forest --model_output model_output/random_forest_000.pkl
+	#$(PYTHON) evaluate_model.py --data data/transform/validation/insurance_000_train.parquet --model_name xgboost --model_output model_output/xgboost_000.pkl
