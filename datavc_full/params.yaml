@@ -1,5 +1,5 @@
 evaluate_model:
   criterion: squared_error
-  min_samples_leaf: 25
+  min_samples_leaf: 20
   max_leaf_nodes: 4
   degree: 3
