@@ -1,6 +1,10 @@
 stages:
   create_dirs:
     cmd: mkdir -p -v data/ output/ model_output/
+    params:
+      - data/
+      - output/
+      - model_output/
   install:
     cmd: pip install -r requirements.txt
     deps:
@@ -15,8 +19,11 @@ stages:
       - model_output/
   clean_data:
     cmd: clean_data.py --input "data/raw/insurance.csv" --output "data/transform/insurance_000.parquet"
+    params:
+      - data/original_data/insurance.csv
+      - data/transform/insurance_000.parquet
     deps:
-      - data/
+      - data/original_data/insurance.csv
   eda:
     cmd: python eda.py --input data/transform/insurance_000.parquet --output output/eda_combined_plots.png
     deps:
