@@ -2,17 +2,17 @@
 .DEFAULT_GOAL := all
 
 # .PHONY tells make that these targets do not represent actual files
-.PHONY: all install clean
+.PHONY: all install clean format lint create_dirs activate_venv import_data clean_data eda split_data evaluate_model
 
 # run all commands
-all: install create_dirs
+all: create_dirs install activate_venv import_data clean_data eda split_data evaluate_model
 
 # Specify python location in virtual environment
 # Specify pip location in virtual environment
 ORIGINAL_PY_VERSION := $(shell python3 --version)
 PYTHON := .venv/bin/python3
 PIP := .venv/bin/pip3
-DOCKER_CONTAINER_NAME := ML_workflow:v0.0.0
+DOCKER_CONTAINER_NAME := ml_regression_workflow:v0.0.0
 DATA_DIR := data/
 OUTPUT_DIR := output/
 MODEL_OUTPUT_DIR := model_output/
@@ -26,10 +26,13 @@ venv/bin/activate: requirements.txt
 	# activate virtual environment
 	. .venv/bin/activate
 
-activate:
+activate_venv:
 	# activate virtual environment
 	# run . .venv/bin/activate manually if it doesn't work
-	. .venv/bin/activate
+	@echo "Activating virtual environment"
+	chmod +x activate_venv.sh
+	./activate_venv.sh
+
 
 install: venv/bin/activate requirements.txt # prerequisite
 	# install commands
@@ -41,11 +44,11 @@ install: venv/bin/activate requirements.txt # prerequisite
 	$(PIP) --no-cache-dir install --upgrade pip &&\
 		$(PIP) --no-cache-dir install -r requirements.txt
 
-docstring: activate
+docstring: 
 	# format docstring
 	pyment -w -o numpydoc *.py
   
-format: activate 
+format: 
 	# format code
 	black *.py
 
@@ -58,6 +61,10 @@ clean:
 	rm -rf .pytest_cache &&\
 	rm -rf .venv
 	rm -rf db
+	rm -rf data
+	rm -rf output
+	rm -rf model_output
+
 
 lint: activate install format
 	# flake8 or #pylint
@@ -73,7 +80,7 @@ create_dirs:
 	@echo "Directories created"
 	@echo "remember to follow these steps https://www.kaggle.com/discussions/general/74235"
 
-import_data: create_dirs
+import_data: create_dirs 
 	@echo "Importing data from Kaggle"
 	@echo "This is step 3: import data"
 	@echo "The data folder has a new dataset"
@@ -114,3 +121,15 @@ evaluate_model: split_data
 	@echo "This is step 7: evaluate model"
 	@echo "The output folder has a model evaluation in output/model_evaluation"
 	$(PYTHON) evaluate.py --criterion squared_error --min_samples_leaf 10 --max_leaf_nodes 5 --degree 3
+
+docker_build: requirements.txt Dockerfile
+	@echo "Building docker image"
+	sudo docker build -t $(DOCKER_CONTAINER_NAME) .
+
+docker_run: docker_build
+	@echo "Running docker container"
+	sudo docker run -it --rm $(DOCKER_CONTAINER_NAME)
+
+docker_clean:
+	@echo "Cleaning up docker"
+	sudo docker rmi $(DOCKER_CONTAINER_NAME)
