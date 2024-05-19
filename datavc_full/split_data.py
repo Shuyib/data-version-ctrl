@@ -6,9 +6,12 @@ We also create a validation set from the training data.
 The data set will then be stored in data/train, data/test, and data/val.
 
 How to run:
-    python split_data.py --data data/transform/insurance_000.parquet --strategy kfold --test_size 0.2 --n_splits 5
-    python split_data.py --data data/transform/insurance_000.parquet --strategy train_test_split --test_size 0.2
+-----------
+python split_data.py --data data/transform/insurance_000.parquet --strategy kfold --test_size 0.2 --n_splits 5
+python split_data.py --data data/transform/insurance_000.parquet --strategy train_test_split --test_size 0.2
 
+Or
+make split_data if Makefile is available in your working directory.
 """
 
 import os

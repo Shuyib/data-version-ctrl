@@ -12,8 +12,8 @@ encode_data: Encode the data.
 
 These functions will be run as a command line tool using argparse.
 
-How to run the script:
-----------------------
+How to run:
+-----------
 python cleandata.py load_data --file_path data/original_data/insurance.csv
 python cleandata.py summary --file_path data/original_data/insurance.csv
 python cleandata.py check_missing --file_path data/original_data/insurance.csv

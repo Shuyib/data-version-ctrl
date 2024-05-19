@@ -10,6 +10,13 @@ We will perform the following steps:
 - Visualize feature importance and decision boundaries
 - Narrative on the findings
 - Save the models
+
+How to run:
+-----------
+python evaluate.py --criterion mse --min_samples_leaf 25 --max_leaf_nodes 4 --degree 2
+
+Or
+make evaluate_model if Makefile is available in your working directory.
 """
 
 import sys

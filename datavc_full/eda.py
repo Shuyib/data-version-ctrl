@@ -7,8 +7,8 @@ We will perform the following steps:
 - Graphical statistical modeling for the next steps
 - Narrative on the findings
 
-How to run the script:
-----------------------
+How to run:
+-----------
 python eda.py --input data/transform/insurance_000.parquet --output output/eda_combined_plots.png
 
 Or
