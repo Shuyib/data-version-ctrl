@@ -15,7 +15,7 @@ Or
 make eda if Makefile is available in your working directory.
 
 """
-
+import sys
 import argparse
 import pandas as pd
 import numpy as np
@@ -23,6 +23,7 @@ import seaborn as sns
 from matplotlib import pyplot as plt
 
 # see versions of libraries
+print(f"python version: {sys.version}")
 print(f"pandas version: {pd.__version__}")
 print(f"numpy version: {np.__version__}")
 print(f"matplotlib version: {plt.matplotlib.__version__}")
