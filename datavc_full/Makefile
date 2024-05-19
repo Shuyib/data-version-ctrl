@@ -5,7 +5,8 @@
 .PHONY: all install clean format lint create_dirs activate_venv import_data clean_data eda split_data evaluate_model
 
 # run all commands
-all: create_dirs install activate_venv import_data clean_data eda split_data evaluate_model
+all: 
+	dvc repro
 
 # Specify python location in virtual environment
 # Specify pip location in virtual environment
@@ -30,20 +31,17 @@ activate_venv:
 	# activate virtual environment
 	# run . .venv/bin/activate manually if it doesn't work
 	@echo "Activating virtual environment"
-	chmod +x activate_venv.sh
-	./activate_venv.sh
+	dvc repro activate_venv
 
 
-install: venv/bin/activate requirements.txt # prerequisite
+install: 
 	# install commands
 	# This is step 1: install the virtual environment
 	# Py version using py 3.10 from envname
 	@echo "Python version: $(ORIGINAL_PY_VERSION)"
 	@echo "Installing virtual environment"
 	@echo "This is step 1: install the virtual environment"
-	$(PIP) --no-cache-dir install --upgrade pip &&\
-		$(PIP) --no-cache-dir install -r requirements.txt
-
+	dvc repro install
 docstring: 
 	# format docstring
 	pyment -w -o numpydoc *.py
@@ -70,55 +68,54 @@ lint: activate install format
 	# flake8 or #pylint
 	pylint --disable=R,C --errors-only *.py utils/*.py testing/*.py
 
+init:
+	@echo "Initializing DVC"
+	dvc init
+
 # Make sure the directories have been created
 create_dirs:
 	@echo "Creating directories"
 	@echo "This is step 2: create directories"
-	mkdir -p -v $(DATA_DIR)
-	mkdir -p -v $(OUTPUT_DIR)
-	mkdir -p -v $(MODEL_OUTPUT_DIR)
-	@echo "Directories created"
-	@echo "remember to follow these steps https://www.kaggle.com/discussions/general/74235"
+	dvc repro create_dirs
 
-import_data: create_dirs format
+import_data: 
 	@echo "Importing data from Kaggle"
 	@echo "This is step 3: import data"
 	@echo "The data folder has a new dataset"
 	@echo "Your task Can you accurately predict insurance costs? Regression problem"
-	# make sure script is executable
-	chmod +x import_data.sh
-	# run script
-	./import_data.sh
+	dvc repro import_data
 
 clean_data: import_data data/original_data/insurance.csv
 	@echo "Cleaning data"
 	@echo "This is step 4: clean data"
 	@echo "The data folder has a cleaned dataset in data/transform"
-	$(PYTHON) cleandata.py load_data --file_path data/original_data/insurance.csv
-	$(PYTHON) cleandata.py summary --file_path data/original_data/insurance.csv
-	$(PYTHON) cleandata.py check_missing --file_path data/original_data/insurance.csv
-	$(PYTHON) cleandata.py check_duplicate --file_path data/original_data/insurance.csv
-	$(PYTHON) cleandata.py encode_data --file_path data/original_data/insurance.csv --version 000
-	@echo "Data cleaned"
+	dvc repro clean_data
 
-eda: clean_data
+eda:
 	@echo "Performing EDA"
 	@echo "This is step 5: EDA"
 	@echo "The output folder has an EDA report in output/eda"
-	$(PYTHON) eda.py --input data/transform/insurance_000.parquet --output output/eda_combined_plots.png
-
-split_data: eda
+	dvc repro eda
+split_data: 
 	@echo "Splitting data"
 	@echo "This is step 6: split data"
 	@echo "The output folder has a split dataset in data/transform/validation"
 	@echo "For train test split"
-	$(PYTHON) split_data.py --data data/transform/insurance_000.parquet --strategy train_test_split --test_size 0.2
-	@echo "For kfold split"
-	#$(PYTHON) split_data.py --data data/transform/insurance_000.parquet --strategy kfold --test_size 0.2 --n_splits 5
-
-evaluate_model: split_data
+	dvc repro split_data
+evaluate_model: 
 	@echo "Evaluating model"
 	@echo "This is step 7: evaluate model"
 	@echo "The output folder has a model evaluation in output/model_evaluation"
-	$(PYTHON) evaluate.py --criterion squared_error --min_samples_leaf 10 --max_leaf_nodes 5 --degree 3
+	dvc repro evaluate_model
 
+compare_metrics:
+	@echo "Comparing metrics"
+	@echo "This is step 8: compare metrics"
+	@echo "The output folder has a model evaluation in output/model_evaluation"
+	dvc metrics diff
+
+hyperparam_diff:
+	@echo "Comparing hyperparameters"
+	@echo "This is step 9: compare hyperparameters"
+	@echo "The output folder has a model evaluation in output/model_evaluation"
+	dvc params diff
