@@ -7,8 +7,8 @@ stages:
     deps:
     - path: requirements.txt
       hash: md5
-      md5: cea82b1b5cc3c6d44b63fb8250a56285
-      size: 203
+      md5: 04b6c0edcf4b47f765974dae25aed8bf
+      size: 226
   activate_venv:
     cmd: source .venv/bin/activate
     deps:
