@@ -1,0 +1,159 @@
+schema: '2.0'
+stages:
+  create_dirs:
+    cmd: mkdir -p -v data/ output/ model_output/
+  install:
+    cmd: "pip install --upgrade pip\npip install -r requirements.txt\n"
+    deps:
+    - path: requirements.txt
+      hash: md5
+      md5: cea82b1b5cc3c6d44b63fb8250a56285
+      size: 203
+  activate_venv:
+    cmd: source .venv/bin/activate
+    deps:
+    - path: .venv/bin/activate
+      hash: md5
+      md5: cc7aabd12c892f54b0a259495b5b41a8
+      size: 2108
+  import_data:
+    cmd: ./import_data.sh
+    deps:
+    - path: .venv/bin/activate
+      hash: md5
+      md5: cc7aabd12c892f54b0a259495b5b41a8
+      size: 2108
+    - path: data/
+      hash: md5
+      md5: 41b6dbfa8f3b1ffcbd9b7f0fbf5e4d14.dir
+      size: 55628
+      nfiles: 1
+    - path: model_output/
+      hash: md5
+      md5: d751713988987e9331980363e24189ce.dir
+      size: 0
+      nfiles: 0
+    - path: output/
+      hash: md5
+      md5: d751713988987e9331980363e24189ce.dir
+      size: 0
+      nfiles: 0
+  clean_data:
+    cmd: "python cleandata.py load_data --file_path data/original_data/insurance.csv\n
+      python cleandata.py summary --file_path data/original_data/insurance.csv\npython
+      cleandata.py check_missing --file_path data/original_data/insurance.csv\npython
+      cleandata.py check_duplicate --file_path data/original_data/insurance.csv\n
+      python cleandata.py encode_data --file_path data/original_data/insurance.csv
+      --version 000\n"
+    deps:
+    - path: .venv/bin/activate
+      hash: md5
+      md5: cc7aabd12c892f54b0a259495b5b41a8
+      size: 2108
+    - path: cleandata.py
+      hash: md5
+      md5: fd9adffa3c156bd01b9bdfc2a091cc62
+      size: 6223
+    - path: data/original_data/insurance.csv
+      hash: md5
+      md5: d5364d06246fb4bfa4cc7d1ee89ebd0d
+      size: 55628
+    - path: import_data.sh
+      hash: md5
+      md5: 75cb5e80e9cadcd06ee4ceebcc5c0609
+      size: 1270
+    outs:
+    - path: data/transform/insurance_000.parquet
+      hash: md5
+      md5: d064f0730660d1e626b7318b5a3373b6
+      size: 18857
+  eda:
+    cmd: python eda.py --input data/transform/insurance_000.parquet --output output/eda_combined_plots.png
+    deps:
+    - path: .venv/bin/activate
+      hash: md5
+      md5: cc7aabd12c892f54b0a259495b5b41a8
+      size: 2108
+    - path: cleandata.py
+      hash: md5
+      md5: fd9adffa3c156bd01b9bdfc2a091cc62
+      size: 6223
+    - path: eda.py
+      hash: md5
+      md5: c5107f8ca7babe1d53bf849a9e6dddec
+      size: 6325
+    outs:
+    - path: output/eda_combined_plots.png
+      hash: md5
+      md5: 1d7eaf990168fb5adf69c212343ed86e
+      size: 378228
+  split_data_train_test:
+    cmd: python split_data.py --data data/transform/insurance_000.parquet --strategy
+      train_test_split --test_size 0.2
+    deps:
+    - path: data/transform/insurance_000.parquet
+      hash: md5
+      md5: d064f0730660d1e626b7318b5a3373b6
+      size: 18857
+    - path: eda.py
+      hash: md5
+      md5: c5107f8ca7babe1d53bf849a9e6dddec
+      size: 6325
+    - path: split_data.py
+      hash: md5
+      md5: 87c3265f9d9bf93342318dd1b8b1a3cf
+      size: 3940
+  evaluate_model:
+    cmd: python evaluate.py
+    deps:
+    - path: data/transform/insurance_000.parquet
+      hash: md5
+      md5: d064f0730660d1e626b7318b5a3373b6
+      size: 18857
+    - path: evaluate.py
+      hash: md5
+      md5: 8a0af2d052ec9e5fb417cb7198d1a6a7
+      size: 4927
+    - path: split_data.py
+      hash: md5
+      md5: 87c3265f9d9bf93342318dd1b8b1a3cf
+      size: 3940
+    params:
+      params.yaml:
+        evaluate_model.criterion: squared_error
+        evaluate_model.degree: 3
+        evaluate_model.max_leaf_nodes: 4
+        evaluate_model.min_samples_leaf: 25
+    outs:
+    - path: model_output/linear_model_scaled.joblib
+      hash: md5
+      md5: 7574909f2f0f3b0b2592e3014897a35a
+      size: 655
+    - path: model_output/metrics.json
+      hash: md5
+      md5: e4a7abcc5a5c3ad02d4e76c254e19c63
+      size: 219
+    - path: model_output/tree_model.joblib
+      hash: md5
+      md5: b4f4780f897df7d08ff8de23c9d5c445
+      size: 2049
+    - path: output/decision_tree.png
+      hash: md5
+      md5: a616b5763f15d7921e97e064a88ca20e
+      size: 85099
+  split_data_kfold:
+    cmd: python split_data.py --data data/transform/insurance_000.parquet --strategy
+      kfold --test_size 0.2 --n_splits 5
+    deps:
+    - path: data/transform/insurance_000.parquet
+      hash: md5
+      md5: d064f0730660d1e626b7318b5a3373b6
+      size: 18857
+    - path: eda.py
+      hash: md5
+      md5: c5107f8ca7babe1d53bf849a9e6dddec
+      size: 6325
+    - path: split_data.py
+      hash: md5
+      md5: 87c3265f9d9bf93342318dd1b8b1a3cf
+      size: 3940
