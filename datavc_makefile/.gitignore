@@ -32,11 +32,16 @@ vendor/
 config.ini
 secrets.txt
 credentials.json
+kaggle.json
 
 # Ignore specific files or directories
 data/
 output/
 model_output/
+*.csv
+*.parquet
+*.joblib
+*.pkl
 
 # virtualenv
 .venv/
