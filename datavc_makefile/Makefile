@@ -113,6 +113,4 @@ evaluate_model: split_data
 	@echo "Evaluating model"
 	@echo "This is step 7: evaluate model"
 	@echo "The output folder has a model evaluation in output/model_evaluation"
-	#$(PYTHON) evaluate_model.py --data data/transform/validation/insurance_000_train.parquet --model_name linear_regression --model_output model_output/linear_regression_000.pkl
-	#$(PYTHON) evaluate_model.py --data data/transform/validation/insurance_000_train.parquet --model_name random_forest --model_output model_output/random_forest_000.pkl
-	#$(PYTHON) evaluate_model.py --data data/transform/validation/insurance_000_train.parquet --model_name xgboost --model_output model_output/xgboost_000.pkl
+	$(PYTHON) evaluate.py --criterion squared_error --min_samples_leaf 10 --max_leaf_nodes 5 --degree 3
