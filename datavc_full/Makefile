@@ -34,14 +34,15 @@ activate_venv:
 	dvc repro activate_venv
 
 
-install: 
+install: venv/bin/activate requirements.txt # prerequisite
 	# install commands
 	# This is step 1: install the virtual environment
 	# Py version using py 3.10 from envname
 	@echo "Python version: $(ORIGINAL_PY_VERSION)"
 	@echo "Installing virtual environment"
 	@echo "This is step 1: install the virtual environment"
-	dvc repro install
+	$(PIP) --no-cache-dir install --upgrade pip &&\
+		$(PIP) --no-cache-dir install -r requirements.txt
 docstring: 
 	# format docstring
 	pyment -w -o numpydoc *.py
@@ -96,6 +97,7 @@ eda:
 	@echo "This is step 5: EDA"
 	@echo "The output folder has an EDA report in output/eda"
 	dvc repro eda
+	
 split_data: 
 	@echo "Splitting data"
 	@echo "This is step 6: split data"
