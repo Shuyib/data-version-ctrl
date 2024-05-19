@@ -1,38 +1,79 @@
 stages:
   create_dirs:
     cmd: mkdir -p -v data/ output/ model_output/
-    params:
-      - data/
-      - output/
-      - model_output/
+    desc: "Create directories for data, output, and model_output" 
   install:
-    cmd: pip install -r requirements.txt
+    cmd: |
+      pip install --upgrade pip
+      pip install -r requirements.txt
+    desc: "Upgrade pip and install dependencies"
     deps:
       - requirements.txt
   activate_venv:
     cmd: source .venv/bin/activate
+    desc: "Activate virtual environment"
+    deps:
+      - .venv/bin/activate
   import_data:
     cmd: ./import_data.sh
+    desc: "Import data from kaggle"
     deps:
-      - data/
-      - output/
-      - model_output/
+      - .venv/bin/activate
   clean_data:
-    cmd: clean_data.py --input "data/raw/insurance.csv" --output "data/transform/insurance_000.parquet"
-    params:
-      - data/original_data/insurance.csv
-      - data/transform/insurance_000.parquet
+    cmd: |
+         python cleandata.py load_data --file_path data/original_data/insurance.csv
+         python cleandata.py summary --file_path data/original_data/insurance.csv
+         python cleandata.py check_missing --file_path data/original_data/insurance.csv
+         python cleandata.py check_duplicate --file_path data/original_data/insurance.csv
+         python cleandata.py encode_data --file_path data/original_data/insurance.csv --version 000
+    desc: "Loads the data, does summary statistics, checks for missing values, duplicates and encodes data into a numerical form."
     deps:
+      - import_data.sh
+      - .venv/bin/activate
+      - cleandata.py
       - data/original_data/insurance.csv
+    outs:
+      - data/transform/insurance_000.parquet
   eda:
     cmd: python eda.py --input data/transform/insurance_000.parquet --output output/eda_combined_plots.png
+    desc: "Perform exploratory data analysis to get better understanding of your data."
     deps:
-      - clean_data
-  split_data:
+      - .venv/bin/activate
+      - cleandata.py
+      - eda.py
+    outs:
+      - output/eda_combined_plots.png
+  split_data_kfold:
+    cmd: python split_data.py --data data/transform/insurance_000.parquet --strategy kfold --test_size 0.2 --n_splits 5
+    desc: "Split the data into training and testing using kfold strategy."
+    deps:
+      - eda.py
+      - split_data.py
+      - data/transform/insurance_000.parquet
+  split_data_train_test:
     cmd: python split_data.py --data data/transform/insurance_000.parquet --strategy train_test_split --test_size 0.2
+    desc: "Split the data into training and testing sets using train_test_split strategies."
     deps:
-      - eda
+      - eda.py
+      - split_data.py
+      - data/transform/insurance_000.parquet
   evaluate_model:
-    cmd: python evaluate.py --criterion squared_error --min_samples_leaf 10 --max_leaf_nodes 5 --degree 3
+    cmd: python evaluate.py
+    desc: "Evaluate the model using linear regression, Polynomial regression and Decision tree regression."
     deps:
-      - split_data
+      - split_data.py
+      - evaluate.py
+      - data/transform/insurance_000.parquet
+    params:
+      - evaluate_model.criterion
+      - evaluate_model.min_samples_leaf
+      - evaluate_model.max_leaf_nodes
+      - evaluate_model.degree
+    metrics:
+      - model_output/metrics.json
+    outs:
+      - model_output/linear_model_scaled.joblib
+      - model_output/tree_model.joblib
+      - output/decision_tree.png
+
+ 
