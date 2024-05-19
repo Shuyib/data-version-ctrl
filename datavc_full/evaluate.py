@@ -34,6 +34,7 @@ from sklearn import tree
 from sklearn.preprocessing import StandardScaler
 import joblib
 from joblib import dump
+import json
 
 # see versions of libraries
 print(f"python version: {sys.version}")
@@ -122,6 +123,19 @@ print(
     "Linear model score with polynomial features on validation set:",
     linear_model_poly.score(X_val_poly, y_val),
 )
+
+# store the metrics in a dictionary
+metrics = {
+    "linear_model_mae": mean_absolute_error(y_test, y_pred_linear_test),
+    "tree_model_score": tree_model.score(X_test, y_test),
+    "linear_model_score_val": linear_model_scaled.score(X_val_scaled, y_val),
+    "tree_model_score_val": tree_model.score(X_val, y_val),
+    "linear_model_score_poly_val": linear_model_poly.score(X_val_poly, y_val),
+}
+
+# write the metrics to a JSON file
+with open("model_output/metrics.json", "w") as f:
+    json.dump(metrics, f)
 
 # Draw the decision tree
 plt.figure(figsize=(12, 8))
