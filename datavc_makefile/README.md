@@ -1,7 +1,7 @@
 # datavc_makefile
 This folder uses a Makefile only to help to help manage machine learning workflows.
 
-> For more information check out more prose here <data-version-ctrl/datavc_full/README.md>
+> For more information check out more prose here <https://github.com/Shuyib/data-version-ctrl/blob/main/datavc_full/README.md>
 
 
 
