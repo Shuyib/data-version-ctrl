@@ -5,22 +5,22 @@ This folder uses a Makefile only to help to help manage machine learning workflo
 
 
 
-## Folder structure
+## Folder structure    
 
-Rather similar to the previous project.   
+Rather similar to the previous project.     
 
-.
-├── Dockerfile            # Helps create the workflow with Docker (needs fixing)
-├── Makefile              # Commands to manage the project lifecycle
-├── README.md             # This file, providing an overview of the project
-├── activate_venv.sh      # Script to activate the virtual environment (optional)
-├── cleandata.py          # Script to load, clean, and preprocess the data
-├── eda.py                # Script for exploratory data analysis
-├── evaluate.py           # Script to evaluate machine learning models
-├── import_data.sh        # Script to import data from Kaggle
-├── params.yaml           # File to store and manage hyperparameters
-├── requirements.txt      # Python package requirements
-└── split_data.py         # Script to split data into training and testing sets
+.    
+├── Dockerfile            # Helps create the workflow with Docker (needs fixing)    
+├── Makefile              # Commands to manage the project lifecycle     
+├── README.md             # This file, providing an overview of the project    
+├── activate_venv.sh      # Script to activate the virtual environment (optional)    
+├── cleandata.py          # Script to load, clean, and preprocess the data    
+├── eda.py                # Script for exploratory data analysis    
+├── evaluate.py           # Script to evaluate machine learning models    
+├── import_data.sh        # Script to import data from Kaggle    
+├── params.yaml           # File to store and manage hyperparameters    
+├── requirements.txt      # Python package requirements    
+└── split_data.py         # Script to split data into training and testing sets    
 
 ## Setup
 
