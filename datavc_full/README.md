@@ -96,3 +96,10 @@ dvc exp show
 
     DVC metrics, plots, and parameters: https://dvc.org/doc/start/data-pipelines/metrics-parameters-plots
     DVC experiments: https://dvc.org/doc/start/experiments
+
+
+## Things to try
+
+* Create a workflow where the generated files are stored in drive or object storage?  
+* Edit the evaluate.py to edit the linear regression and decision tree classifier hyperparameters using argparse?   
+* Try using other models and add them to the workflow such as Random Forest and XGBoost?  
