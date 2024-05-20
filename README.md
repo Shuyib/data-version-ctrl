@@ -49,7 +49,8 @@ Don't forget to include emojis 🚀 and descriptive commit messages to make the 
 This repository is licensed under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0).   
 
 ## References   
-1.DVC documentation: https://dvc.org/doc   
-2.DVC YouTube channel: https://www.youtube.com/playlist?list=PL7WG7YrwYcnDb0qdPl9-KEStsL-3oaEjg   
-3.Pragmatic AI labs: https://youtu.be/rKRG6oQf-bQ?si=4BzXMhS7owl6uWef    
-4.Kaggle notebook by Dandelion: https://www.kaggle.com/code/hely333/eda-regression     
+1.DVC documentation: <https://dvc.org/doc>   
+2.DVC YouTube channel: <https://www.youtube.com/playlist?list=PL7WG7YrwYcnDb0qdPl9-KEStsL-3oaEjg>   
+3.Pragmatic AI labs: <https://youtu.be/rKRG6oQf-bQ?si=4BzXMhS7owl6uWef>    
+4.Kaggle notebook by Dandelion: <https://www.kaggle.com/code/hely333/eda-regression>     
+5. Predicting Chronic kidney Disease: <https://github.com/Shuyib/chronic-kidney-disease-kaggle>
