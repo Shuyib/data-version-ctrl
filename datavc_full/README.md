@@ -100,6 +100,7 @@ dvc exp show
 
 ## Things to try
 
+* Add logging instead of using print statements.    
 * Create a workflow where the generated files are stored in drive or object storage?  
 * Edit the evaluate.py to edit the linear regression and decision tree classifier hyperparameters using argparse?   
 * Try using other models and add them to the workflow such as Random Forest and XGBoost?  
