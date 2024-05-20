@@ -121,3 +121,4 @@ hyperparam_diff:
 	@echo "This is step 9: compare hyperparameters"
 	@echo "The output folder has a model evaluation in output/model_evaluation"
 	dvc params diff
+
