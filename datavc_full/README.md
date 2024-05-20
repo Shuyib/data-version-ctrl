@@ -2,10 +2,12 @@
 ## Data Version Control with Makefile & DVC
 
 This repository demonstrates how to use Data Version Control (DVC) in combination with Makefiles to streamline and manage a machine learning project. DVC is a powerful tool that helps track changes in data files, plots, machine learning models, and metrics, ensuring reproducibility and shareability of your data science workflows.
-Problem Statement
+
+## Problem Statement
 
 The project aims to analyze a Kaggle dataset containing insurance cost information and build a predictive model to understand the factors influencing insurance charges. The dataset can be accessed from the following link: Insurance Cost Dataset
-Data Science Approach
+
+## Data Science Approach
 
 To tackle this problem, we will follow the [abridged standard data science workflow](https://www.manning.com/books/data-science-with-python-and-dask):
 
@@ -51,6 +53,9 @@ python3 -m venv .venv
 # Activate the virtual environment
 source .venv/bin/activate  # On Windows, use `.venv\Scripts\activate`
 ```
+
+> You need a kaggle account to use the kaggle API. Please handle the resultant `kaggle.json` with care. Don't add it to the repository. You can enforce that by adding it .gitingore file and .dockerignore file.    
+
 Install the required Python packages by running:    
 
 ```bash
