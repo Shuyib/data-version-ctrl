@@ -26,7 +26,7 @@ The main factors influencing insurance spending are expected to be revealed by t
 
 The repository has the following structure:
 
-.
+.    
 ├── Makefile                 # Commands to manage the project lifecycle     
 ├── activate_venv.sh         # Script to activate the virtual environment (optional)    
 ├── cleandata.py             # Script to load, clean, and preprocess the data    
