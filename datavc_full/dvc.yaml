@@ -70,7 +70,8 @@ stages:
       - evaluate_model.max_leaf_nodes
       - evaluate_model.degree
     metrics:
-      - model_output/metrics.json
+      - model_output/metrics.json:
+         cache: false
     outs:
       - model_output/linear_model_scaled.joblib
       - model_output/tree_model.joblib
