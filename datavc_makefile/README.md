@@ -69,5 +69,6 @@ make evaluate_model
 
 ## Things you can try   
 
+* Add logging instead of using print statements.    
 * Try fixing the Dockerfile   
 * Do you think there's a missing step? Add it?
