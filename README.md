@@ -28,9 +28,9 @@ In this repository, we will explore how to use DVC and Makefiles together to cre
 
 This repository contains two folders:
 
-1. `[datavc_makefile](datavc_makefile)`: This folder demonstrates how to use Makefiles for automating and managing the dependencies in a data science project. Makefiles define a set of rules and instructions for building and processing various files in the correct order.
+1. [Makefile ML](datavc_makefile/README.md): This folder demonstrates how to use Makefiles for automating and managing the dependencies in a data science project. Makefiles define a set of rules and instructions for building and processing various files in the correct order.
 
-2. `[datavc_full](datavc_full)`: This folder demonstrates the combined usage of Makefiles and Data Version Control (DVC). DVC is a tool that helps track changes in data files, plots, machine learning models, and metrics, ensuring reproducibility and shareability of your data science workflows.
+2. [Makefile & DVC](datavc_full/README.md): This folder demonstrates the combined usage of Makefiles and Data Version Control (DVC). DVC is a tool that helps track changes in data files, plots, machine learning models, and metrics, ensuring reproducibility and shareability of your data science workflows.
 
 To get started, navigate to the desired folder (`datavc_makefile` or `datavc_full`) and follow the instructions provided in the respective README file. These folders contain examples and demonstrations of how to use Makefiles and DVC in practice.
 
