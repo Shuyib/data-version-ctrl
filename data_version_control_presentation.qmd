@@ -1,16 +1,16 @@
 ---
-title: "Data Version Control"
-jupyter: python3
-author:
-  name: Mainye B
-  site-url: nyab.notion.com
-format:
-  html: 
-    code-fold: true
-    theme: darkly
-    toc: true
-    number-sections: true
-    colorlinks: true
+  title: "Data Version Control"
+  jupyter: python3
+  author:
+    name: Mainye B
+    site-url: nyab.notion.com
+  format:
+    html: 
+      code-fold: true
+      theme: darkly
+      toc: true
+      number-sections: true
+      colorlinks: true
 ---
 
 # What is it?
@@ -27,27 +27,30 @@ They are several tools that have been created to address this problem. They incl
 - [Metaflow](https://metaflow.org/)
 
 ::: {.callout}
-We'll go through DVC, great expectations and Makefiles
+We'll go through DVC, and Makefiles. Great Expectations is another tool that can be used to validate data.
 :::
 
 # Why is it important?
-As someone who has worked on various projects in data science and machine learning. I have discovered that the path from idea to product needs a fricitionless workflow this will allow you to think about implementing ideas than handling all that goes on in the background.
+As professionals who have worked on various projects in data science and machine learning, we have discovered that the path from idea to product needs a frictionless workflow. This allows us to focus on implementing ideas rather than handling all that goes on in the background.
 
-It is important mostly because it can get very confusing when handling projects and keeping track of your experiments since in data science we don't have predefined outputs. We can make a report, dashboard, an application and API. They are so many things that go into that data importing, EDA, feature engineering and modeling which can take so many routes to reach your destination.
+It is important mostly because it can get very confusing when handling projects and keeping track of our experiments. In data science, we don't have predefined outputs. We can create reports, dashboards, applications, and APIs. There are so many things that go into that process, such as data importing, exploratory data analysis, feature engineering, and modeling. Each of these steps can take different routes to reach our destination.
 
-> add image of a winding path
+<img src="https://unsplash.com/photos/aerial-photography-of-road-zS4lUqLEiNA" title="Title: Aerial Photography by Jack Anstey" alt="Aerial Photography by Jack Anstey">
 
 ## Needs
-- How can we track different parts of work?
-- How can we record hyperparameters in different versions of our experiments?
-- How about storing metadata of our projects like models and slices of data?
-- How about metrics how can those be put together in a more unified way?
-- Can I replicate their work 100% or 95%?
+- How can we track different parts of our work?
+- How can we record hyperparameters for different versions of our experiments?
+- How can we store metadata of our projects, such as models and slices of data?
+- How can we unify and organize metrics?
+- Can I fully replicate their work or at least a significant portion of it?
 
-> All the solutions above can help us with that.
+> All of the solutions mentioned above can help address these challenges and can improve your workflows.
 
-### Examples
+### Data Examples
 
+We will be using two datasets for this presentation. The first dataset is the Medical Cost Personal Datasets. This dataset contains information about the medical costs of individuals. The second dataset is the Telco dataset. This dataset contains information about the customers of a telecommunications company. Both datasets are available on Kaggle.
+
+We recommend visiting the [Kaggle website](https://www.kaggle.com/) to download the datasets and explore them further. As well as implement the ideas with the second dataset.
 
 ::: {.callout-important}
 **[Medical Cost Personal Datasets](https://www.kaggle.com/datasets/mirichoi0218/insurance)**
@@ -57,26 +60,25 @@ It is important mostly because it can get very confusing when handling projects 
 **[Telco dataset](https://www.kaggle.com/datasets/blastchar/telco-customer-churn)**
 :::
 
-The dataset has a number of observations and measurements that a crucial for a prediction task which is finding churn. That is, the likelihood that a client will stop using the telecommunications company. That is, if you are looking at the second dataset.
+The dataset has a number of observations and measurements that are crucial for a prediction task, which is finding churn. Churn refers to the likelihood that a client will stop using the telecommunications company. This is particularly relevant if you are looking at the second dataset, the Telco dataset.
 
 
 Other very common metrics that you can be asked to calculate in the data science team include:
 
 | Metric 	| Explanation 	| Associated link 	|
 |---------|:-----|------:|
-| Hypothesis testing 	| Making the website better via focus group testing. 	| https://medium.com/@gajendra.k.s/hypothesis-testing-33aaeeff5336 	|
-| Conversion rate 	| time it takes for a client to move from discovery to becoming a paying customer. 	| https://www.geeksforgeeks.org/conversion-rate-what-is-it-how-to-calculate-it/ 	|
-| Customer life time value (LTV) 	| how much a client(s) will generate in their lifetime. 	| https://www.datacamp.com/tutorial/customer-life-time-value 	|
-| Recommendation systems 	| how can we sell cross sell our existing products better 	| https://medium.com/@Karthickk_Rajah/clustering-based-algorithms-in-recommendation-system-205fcb15bc9b 	|
-| Optimization 	| adjusting cost of product this involves using specific techniques to find the maximum or minimum value of something to reap better revenues 	| https://towardsdatascience.com/production-fixed-horizon-planning-with-python-8dd38b468e86 	|
+| Hypothesis testing 	| Making the website better via focus group testing. 	| [link](https://medium.com/@gajendra.k.s/hypothesis-testing-33aaeeff5336) 	|
+| Conversion rate 	| time it takes for a client to move from discovery to becoming a paying customer. 	| [link](https://www.geeksforgeeks.org/conversion-rate-what-is-it-how-to-calculate-it/) 	|
+| Customer life time value (LTV) 	| how much a client(s) will generate in their lifetime. 	| [link](https://www.datacamp.com/tutorial/customer-life-time-value) 	|
+| Recommendation systems 	| how can we sell cross sell our existing products better 	| [link](https://medium.com/@Karthickk_Rajah/clustering-based-algorithms-in-recommendation-system-205fcb15bc9b) 	|
+| Optimization 	| adjusting cost of product this involves using specific techniques to find the maximum or minimum value of something to reap better revenues 	| [link](https://towardsdatascience.com/production-fixed-horizon-planning-with-python-8dd38b468e86) 	|
 
 
 ### Data science process   
 
 We will be referencing a cool notebook that someone in the kaggle community had done. Here's the original [notebook](https://www.kaggle.com/code/hely333/eda-regression).
 
-The person did are really cool job. However, I wish more one hot encoding was done and exploring techniques such as OneR were done. We'll explore that later. At the moment, let's set out attention to the data science process. Add a more detail from the wiki and the book below.
-
+The person did are really cool job. However, I wish more one hot encoding was done and exploring techniques such as OneR were done. We'll explore that later. At the moment, let's set out attention to the data science process. 
 
 
 ::: {#fig-datasci layout-ncol=2}
@@ -86,6 +88,8 @@ The person did are really cool job. However, I wish more one hot encoding was do
 
 What is done in data science
 :::
+
+As you can see above we change data in various forms that we can use to understand it better. We can use it to make predictions, make recommendations, and optimize our products. 
 
 Often times you can easily just make a notebook, and your work is done. They are tools that allow you to do [scheduled notebook reruns](https://www.kaggle.com/discussions/getting-started/293861) on kaggle, using [papermill](https://papermill.readthedocs.io/en/latest/) and [Sagemaker](https://towardsdatascience.com/how-to-schedule-jupyter-notebooks-in-amazon-sagemaker-d50fa1c8c0ad).
 
@@ -133,7 +137,7 @@ Why Lint?
 
 ```{bash}
 #| echo: false
-lint: activate install format
+lint: activate install format # These are prerequisites: that is they must be run first
 	# flake8 or #pylint
 	pylint --disable=R,C --errors-only *.py utils/*.py testing/*.py
 ```
@@ -156,4 +160,319 @@ At this juncture, you are probably acknowledging how much a Makefile is amazing.
 
 Let create a Makefile to assist us with **Making** a machine learning workflow to help us handle the project better.
 
+In the directory `datavc_makefile` we have a custom Makefile that we can use to run our commands. Specifically, for a machine learning project.
 
+```{Makefile}
+#| echo: false
+# .DEFAULT_GOAL tells make which target to run when no target is specified
+.DEFAULT_GOAL := all
+
+# .PHONY tells make that these targets do not represent actual files
+.PHONY: all install clean format lint create_dirs activate_venv import_data clean_data eda split_data evaluate_model
+
+# run all commands
+all: create_dirs install activate_venv import_data clean_data eda split_data evaluate_model
+
+# Specify python location in virtual environment it ensures that the correct version of python is used
+# Specify pip location in virtual environment it ensures that the correct version of pip is used
+ORIGINAL_PY_VERSION := $(shell python3 --version)
+PYTHON := .venv/bin/python3
+PIP := .venv/bin/pip3
+DOCKER_CONTAINER_NAME := ml_regression_workflow:v0.0.0
+DATA_DIR := data/
+OUTPUT_DIR := output/
+MODEL_OUTPUT_DIR := model_output/
+
+
+venv/bin/activate: requirements.txt
+	# create virtual environment
+	python3 -m venv .venv
+	# make command executable
+	chmod +x .venv/bin/activate
+	# activate virtual environment
+	. .venv/bin/activate
+
+activate_venv:
+	# activate virtual environment
+	# run . .venv/bin/activate manually if it doesn't work
+	@echo "Activating virtual environment"
+	chmod +x activate_venv.sh
+	./activate_venv.sh
+
+
+install: venv/bin/activate requirements.txt # prerequisite
+	# install commands
+	# This is step 1: install the virtual environment
+	# Py version using py 3.10 from envname
+	@echo "Python version: $(ORIGINAL_PY_VERSION)"
+	@echo "Installing virtual environment"
+	@echo "This is step 1: install the virtual environment"
+	$(PIP) --no-cache-dir install --upgrade pip &&\
+		$(PIP) --no-cache-dir install -r requirements.txt
+
+docstring: 
+	# format docstring
+	pyment -w -o numpydoc *.py
+  
+format: 
+	# format code
+	black *.py
+
+clean:
+	@echo "Cleaning up"
+	# clean directory of cache
+	rm -rf __pycache__ &&\
+	rm -rf utils/__pycache__ &&\
+	rm -rf testing/__pycache__ &&\
+	rm -rf .pytest_cache &&\
+	rm -rf .venv
+	rm -rf db
+	rm -rf data
+	rm -rf output
+	rm -rf model_output
+
+
+lint: activate install format
+	# flake8 or #pylint
+	pylint --disable=R,C --errors-only *.py utils/*.py testing/*.py
+
+# Make sure the directories have been created
+create_dirs:
+	@echo "Creating directories"
+	@echo "This is step 2: create directories"
+	mkdir -p -v $(DATA_DIR)
+	mkdir -p -v $(OUTPUT_DIR)
+	mkdir -p -v $(MODEL_OUTPUT_DIR)
+	@echo "Directories created"
+	@echo "remember to follow these steps https://www.kaggle.com/discussions/general/74235"
+
+import_data: create_dirs 
+	@echo "Importing data from Kaggle"
+	@echo "This is step 3: import data"
+	@echo "The data folder has a new dataset"
+	@echo "Your task Can you accurately predict insurance costs? Regression problem"
+	# make sure script is executable
+	chmod +x import_data.sh
+	# run script
+	./import_data.sh
+
+clean_data: import_data data/original_data/insurance.csv
+	@echo "Cleaning data"
+	@echo "This is step 4: clean data"
+	@echo "The data folder has a cleaned dataset in data/transform"
+	$(PYTHON) cleandata.py load_data --file_path data/original_data/insurance.csv
+	$(PYTHON) cleandata.py summary --file_path data/original_data/insurance.csv
+	$(PYTHON) cleandata.py check_missing --file_path data/original_data/insurance.csv
+	$(PYTHON) cleandata.py check_duplicate --file_path data/original_data/insurance.csv
+	$(PYTHON) cleandata.py encode_data --file_path data/original_data/insurance.csv --version 000
+	@echo "Data cleaned"
+
+eda: clean_data
+	@echo "Performing EDA"
+	@echo "This is step 5: EDA"
+	@echo "The output folder has an EDA report in output/eda"
+	$(PYTHON) eda.py --input data/transform/insurance_000.parquet --output output/eda_combined_plots.png
+
+split_data: eda
+	@echo "Splitting data"
+	@echo "This is step 6: split data"
+	@echo "The output folder has a split dataset in data/transform/validation"
+	@echo "For train test split"
+	$(PYTHON) split_data.py --data data/transform/insurance_000.parquet --strategy train_test_split --test_size 0.2
+	@echo "For kfold split"
+	#$(PYTHON) split_data.py --data data/transform/insurance_000.parquet --strategy kfold --test_size 0.2 --n_splits 5
+
+evaluate_model: split_data
+	@echo "Evaluating model"
+	@echo "This is step 7: evaluate model"
+	@echo "The output folder has a model evaluation in output/model_evaluation"
+	$(PYTHON) evaluate.py --criterion squared_error --min_samples_leaf 10 --max_leaf_nodes 5 --degree 3
+
+docker_build: requirements.txt Dockerfile
+	@echo "Building docker image"
+	sudo docker build -t $(DOCKER_CONTAINER_NAME) .
+
+docker_run: docker_build
+	@echo "Running docker container"
+	sudo docker run -it --rm $(DOCKER_CONTAINER_NAME)
+
+docker_clean:
+	@echo "Cleaning up docker"
+	sudo docker rmi $(DOCKER_CONTAINER_NAME)
+```
+
+This Makefile encompasses the whole machine learning workflow. It is a great way to keep track of your work, and also to `Make` sure that you are following best practices. For example, this can encompasses your development, testing, and deployment workflow based on software engineering principles. In addition, the addition of a Dockerfile improves the reproducibility of your work. You can run the commands in the Makefile by running `make all` in the terminal. In case something goes wrong in part of the workflow other parts of the workflow will not run. This helps us isolate any potential issues that may arise, improve reliability and maintainability of the project.
+
+::: {.callout-tip}
+$(PYTHON) is a variable that is used to specify the python version that you want to use. This is important because you may have multiple versions of python installed on your machine. This ensures that the correct version of python is used.
+
+$(PIP) is a variable that is used to specify the pip version that you want to use. This is important because you may have multiple versions of pip installed on your machine. This ensures that the correct version of pip is used.
+
+It is also convenient that you can specify the $(DOCKER_CONTAINER_NAME) variable and easily change it for different versions of your project.
+:::
+
+That's it for the Makefile. Let's move on to DVC.
+
+### DVC
+Is another tool that can help you track your data science projects. Most of the time, it is used independently. But, we thought wouldn't it be awesome if we combined Makefile + DVC. That's what we did, and the gains are tremendous. With DVC, you can version control your data, models, and experiments. It allows you to track changes, collaborate with others, and reproduce your results. By integrating DVC with Makefile, you can automate your data science workflow and ensure that all the necessary steps are executed in the correct order. This combination provides a powerful and efficient way to manage your projects and make them more reproducible.
+
+Here is a simple example of how you can use DVC with Makefile.
+
+```{Makefile}
+#| echo: false
+# .DEFAULT_GOAL tells make which target to run when no target is specified
+.DEFAULT_GOAL := all
+
+# .PHONY tells make that these targets do not represent actual files
+.PHONY: all install clean format lint create_dirs activate_venv import_data clean_data eda split_data evaluate_model
+
+# run all commands
+all: 
+	dvc repro
+
+# Specify python location in virtual environment
+# Specify pip location in virtual environment
+ORIGINAL_PY_VERSION := $(shell python3 --version)
+PYTHON := .venv/bin/python3
+PIP := .venv/bin/pip3
+DOCKER_CONTAINER_NAME := ML_workflow:v0.0.0
+DATA_DIR := data/
+OUTPUT_DIR := output/
+MODEL_OUTPUT_DIR := model_output/
+
+
+venv/bin/activate: requirements.txt
+	# create virtual environment
+	python3 -m venv .venv
+	# make command executable
+	chmod +x .venv/bin/activate
+	# activate virtual environment
+	. .venv/bin/activate
+
+activate_venv:
+	# activate virtual environment
+	# run . .venv/bin/activate manually if it doesn't work
+	@echo "Activating virtual environment"
+	dvc repro activate_venv
+
+
+install: venv/bin/activate requirements.txt # prerequisite
+	# install commands
+	# This is step 1: install the virtual environment
+	# Py version using py 3.10 from envname
+	@echo "Python version: $(ORIGINAL_PY_VERSION)"
+	@echo "Installing virtual environment"
+	@echo "This is step 1: install the virtual environment"
+	$(PIP) --no-cache-dir install --upgrade pip &&\
+		$(PIP) --no-cache-dir install -r requirements.txt
+docstring: 
+	# format docstring
+	pyment -w -o numpydoc *.py
+  
+format: 
+	# format code
+	black *.py
+
+clean:
+	@echo "Cleaning up"
+	# clean directory of cache
+	rm -rf __pycache__ &&\
+	rm -rf utils/__pycache__ &&\
+	rm -rf testing/__pycache__ &&\
+	rm -rf .pytest_cache &&\
+	rm -rf .venv
+	rm -rf db
+	rm -rf data
+	rm -rf output
+	rm -rf model_output
+	
+
+lint: activate install format
+	# flake8 or #pylint
+	pylint --disable=R,C --errors-only *.py utils/*.py testing/*.py
+
+init:
+	@echo "Initializing DVC"
+	dvc init
+
+# Make sure the directories have been created
+create_dirs:
+	@echo "Creating directories"
+	@echo "This is step 2: create directories"
+	dvc repro create_dirs
+
+import_data: 
+	@echo "Importing data from Kaggle"
+	@echo "This is step 3: import data"
+	@echo "The data folder has a new dataset"
+	@echo "Your task Can you accurately predict insurance costs? Regression problem"
+	dvc repro import_data
+
+clean_data: import_data data/original_data/insurance.csv
+	@echo "Cleaning data"
+	@echo "This is step 4: clean data"
+	@echo "The data folder has a cleaned dataset in data/transform"
+	dvc repro clean_data
+
+eda:
+	@echo "Performing EDA"
+	@echo "This is step 5: EDA"
+	@echo "The output folder has an EDA report in output/eda"
+	dvc repro eda
+	
+split_data: 
+	@echo "Splitting data"
+	@echo "This is step 6: split data"
+	@echo "The output folder has a split dataset in data/transform/validation"
+	@echo "For train test split"
+	dvc repro split_data
+evaluate_model: 
+	@echo "Evaluating model"
+	@echo "This is step 7: evaluate model"
+	@echo "The output folder has a model evaluation in output/model_evaluation"
+	dvc repro evaluate_model
+
+compare_metrics:
+	@echo "Comparing metrics"
+	@echo "This is step 8: compare metrics"
+	@echo "The output folder has a model evaluation in output/model_evaluation"
+	dvc metrics diff
+
+hyperparam_diff:
+	@echo "Comparing hyperparameters"
+	@echo "This is step 9: compare hyperparameters"
+	@echo "The output folder has a model evaluation in output/model_evaluation"
+	dvc params diff
+
+clear_cache:
+	@echo "Clearing cache"
+	@echo "This is step 10: clear cache"
+	@echo "The output folder has a model evaluation in output/model_evaluation"
+	rm -rf .dvc/cache
+
+docker_build: requirements.txt Dockerfile
+  @echo "Building docker image"
+  sudo docker build -t $(DOCKER_CONTAINER_NAME) .
+
+docker_run: docker_build
+  @echo "Running docker container"
+  sudo docker run -it --rm $(DOCKER_CONTAINER_NAME)
+```
+
+The difference here is that DVC has specific commands they include `dvc init`, `dvc repro`, `dvc metrics diff`, `dvc params diff`, and `rm -rf .dvc/cache`. These commands are used to track changes, compare metrics, compare hyperparameters, and clear the cache respectively. The `dvc repro` command is used to reproduce the results of the workflow. This ensures that the workflow is executed in the correct order and that all the necessary steps are executed. The `dvc metrics diff` command is used to compare the metrics of different experiments. The `dvc params diff` command is used to compare the hyperparameters of different experiments. The `rm -rf .dvc/cache` command is used to clear the cache. This is important since the cache can take up a lot of space and slow down the workflow. By clearing the cache, you can free up space and speed up the workflow.
+
+
+### Conclusion
+In conclusion, combining Makefile and DVC is a powerful way to manage your data science projects. It allows you to automate your workflow, track changes, collaborate with others, and reproduce your results. By using Makefile and DVC together, you can ensure that your projects are more reproducible, reliable, and maintainable. This can help you save time, reduce errors, and improve the quality of your work. So, next time you start a new data science project, consider using Makefile and DVC to manage your workflow. You won't regret it.
+
+::: {.callout-tip}
+We recommend visiting the [Makefile ML](datavc_makefile/README.md) & [Makefile & DVC](datavc_full/README.md) files for implementing the ideas we have put across for the Makefile and for DVC.
+:::
+
+
+## References   
+1.DVC documentation: <https://dvc.org/doc>   
+2.DVC YouTube channel: <https://www.youtube.com/playlist?list=PL7WG7YrwYcnDb0qdPl9-KEStsL-3oaEjg>   
+3.Pragmatic AI labs: <https://youtu.be/rKRG6oQf-bQ?si=4BzXMhS7owl6uWef>    
+4.Kaggle notebook by Dandelion: <https://www.kaggle.com/code/hely333/eda-regression>     
+5.Predicting Chronic kidney Disease: <https://github.com/Shuyib/chronic-kidney-disease-kaggle>
