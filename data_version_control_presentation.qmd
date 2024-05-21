@@ -3,7 +3,7 @@
   jupyter: python3
   author:
     name: Mainye B
-    site-url: nyab.notion.com
+    url: nyab.notion.com
   format:
     html: 
       code-fold: true
@@ -14,35 +14,36 @@
 ---
 
 # What is it?
-Data version control is way of making a reproducible journal to replicate your data science workflow. Imagine when you are working with teams everyone has their own way of doing things but how can we make a consensus to have unified way of 
-working together so that you don't step on each others toes. On the other hand, 
-is there a way of managing data science projects a bit easier to be able to track project a bit better? We will discuss that in this presentation.
+
+Data version control is way of making a reproducible journal to replicate your data science workflow. Imagine when you are working with teams everyone has their own way of doing things but how can we make a consensus to have unified way of working together so that you don't step on each others toes. On the other hand, is there a way of managing data science projects a bit easier to be able to track project a bit better? We will discuss that in this presentation.
 
 They are several tools that have been created to address this problem. They include the following:
 
-- [DVC](https://dvc.org/)
-- [Mlflow](https://mlflow.org/)
-- [Neptuneai](https://neptune.ai/)
-- [Delta Lake](https://delta.io/)
-- [Metaflow](https://metaflow.org/)
+-   [DVC](https://dvc.org/)
+-   [Mlflow](https://mlflow.org/)
+-   [Neptuneai](https://neptune.ai/)
+-   [Delta Lake](https://delta.io/)
+-   [Metaflow](https://metaflow.org/)
 
-::: {.callout}
+::: callout
 We'll go through DVC, and Makefiles. Great Expectations is another tool that can be used to validate data.
 :::
 
 # Why is it important?
+
 As professionals who have worked on various projects in data science and machine learning, we have discovered that the path from idea to product needs a frictionless workflow. This allows us to focus on implementing ideas rather than handling all that goes on in the background.
 
 It is important mostly because it can get very confusing when handling projects and keeping track of our experiments. In data science, we don't have predefined outputs. We can create reports, dashboards, applications, and APIs. There are so many things that go into that process, such as data importing, exploratory data analysis, feature engineering, and modeling. Each of these steps can take different routes to reach our destination.
 
-<img src="https://unsplash.com/photos/aerial-photography-of-road-zS4lUqLEiNA" title="Title: Aerial Photography by Jack Anstey" alt="Aerial Photography by Jack Anstey">
+![Aerial Photography by Jack Anstey](https://images.unsplash.com/photo-1508233620467-f79f1e317a05?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D "Title: Aerial Photography by Jack Anstey"){fig-alt="A photo of a winding road"}
 
 ## Needs
-- How can we track different parts of our work?
-- How can we record hyperparameters for different versions of our experiments?
-- How can we store metadata of our projects, such as models and slices of data?
-- How can we unify and organize metrics?
-- Can I fully replicate their work or at least a significant portion of it?
+
+-   How can we track different parts of our work?
+-   How can we record hyperparameters for different versions of our experiments?
+-   How can we store metadata of our projects, such as models and slices of data?
+-   How can we unify and organize metrics?
+-   Can I fully replicate their work or at least a significant portion of it?
 
 > All of the solutions mentioned above can help address these challenges and can improve your workflows.
 
@@ -52,55 +53,52 @@ We will be using two datasets for this presentation. The first dataset is the Me
 
 We recommend visiting the [Kaggle website](https://www.kaggle.com/) to download the datasets and explore them further. As well as implement the ideas with the second dataset.
 
-::: {.callout-important}
-**[Medical Cost Personal Datasets](https://www.kaggle.com/datasets/mirichoi0218/insurance)**
+::: callout-important
+[**Medical Cost Personal Datasets**](https://www.kaggle.com/datasets/mirichoi0218/insurance)
 :::
 
-::: {.callout-tip}
-**[Telco dataset](https://www.kaggle.com/datasets/blastchar/telco-customer-churn)**
+::: callout-tip
+[**Telco dataset**](https://www.kaggle.com/datasets/blastchar/telco-customer-churn)
 :::
 
 The dataset has a number of observations and measurements that are crucial for a prediction task, which is finding churn. Churn refers to the likelihood that a client will stop using the telecommunications company. This is particularly relevant if you are looking at the second dataset, the Telco dataset.
 
-
 Other very common metrics that you can be asked to calculate in the data science team include:
 
-| Metric 	| Explanation 	| Associated link 	|
-|---------|:-----|------:|
-| Hypothesis testing 	| Making the website better via focus group testing. 	| [link](https://medium.com/@gajendra.k.s/hypothesis-testing-33aaeeff5336) 	|
-| Conversion rate 	| time it takes for a client to move from discovery to becoming a paying customer. 	| [link](https://www.geeksforgeeks.org/conversion-rate-what-is-it-how-to-calculate-it/) 	|
-| Customer life time value (LTV) 	| how much a client(s) will generate in their lifetime. 	| [link](https://www.datacamp.com/tutorial/customer-life-time-value) 	|
-| Recommendation systems 	| how can we sell cross sell our existing products better 	| [link](https://medium.com/@Karthickk_Rajah/clustering-based-algorithms-in-recommendation-system-205fcb15bc9b) 	|
-| Optimization 	| adjusting cost of product this involves using specific techniques to find the maximum or minimum value of something to reap better revenues 	| [link](https://towardsdatascience.com/production-fixed-horizon-planning-with-python-8dd38b468e86) 	|
+| Metric                         | Explanation                                                                                                                                 |                                                                                               Associated link |
+|--------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------:|
+| Hypothesis testing             | Making the website better via focus group testing.                                                                                          |                                      [link](https://medium.com/@gajendra.k.s/hypothesis-testing-33aaeeff5336) |
+| Conversion rate                | time it takes for a client to move from discovery to becoming a paying customer.                                                            |                         [link](https://www.geeksforgeeks.org/conversion-rate-what-is-it-how-to-calculate-it/) |
+| Customer life time value (LTV) | how much a client(s) will generate in their lifetime.                                                                                       |                                            [link](https://www.datacamp.com/tutorial/customer-life-time-value) |
+| Recommendation systems         | how can we sell cross sell our existing products better                                                                                     | [link](https://medium.com/@Karthickk_Rajah/clustering-based-algorithms-in-recommendation-system-205fcb15bc9b) |
+| Optimization                   | adjusting cost of product this involves using specific techniques to find the maximum or minimum value of something to reap better revenues |             [link](https://towardsdatascience.com/production-fixed-horizon-planning-with-python-8dd38b468e86) |
 
-
-### Data science process   
+### Data science process
 
 We will be referencing a cool notebook that someone in the kaggle community had done. Here's the original [notebook](https://www.kaggle.com/code/hely333/eda-regression).
 
-The person did are really cool job. However, I wish more one hot encoding was done and exploring techniques such as OneR were done. We'll explore that later. At the moment, let's set out attention to the data science process. 
+The person did are really cool job. However, I wish more one hot encoding was done and exploring techniques such as One R were done. We'll explore that later. At the moment, let's set out attention to the data science process.
 
+::: {#fig-datasci layout-ncol="2"}
+[![Data science process](Screenshot%20from%202023-02-13-10-57-10.png)](https://www.manning.com/books/data-science-with-python-and-dask)
 
-::: {#fig-datasci layout-ncol=2}
-[![Data science process](Screenshot from 2023-02-13-10-57-10.png)](https://www.manning.com/books/data-science-with-python-and-dask){#fig-process}
-
-![Transforming-data](Screenshot from 2023-02-13-10-57-41.png){width=100}
+![Transforming-data](Screenshot%20from%202023-02-13-10-57-41.png){width="100"}
 
 What is done in data science
 :::
 
-As you can see above we change data in various forms that we can use to understand it better. We can use it to make predictions, make recommendations, and optimize our products. 
+As you can see above we change data in various forms that we can use to understand it better. We can use it to make predictions, make recommendations, and optimize our products.
 
 Often times you can easily just make a notebook, and your work is done. They are tools that allow you to do [scheduled notebook reruns](https://www.kaggle.com/discussions/getting-started/293861) on kaggle, using [papermill](https://papermill.readthedocs.io/en/latest/) and [Sagemaker](https://towardsdatascience.com/how-to-schedule-jupyter-notebooks-in-amazon-sagemaker-d50fa1c8c0ad).
 
 ## Try something different with DVC and Makefiles
 
 ### Makefile
-In most Unix systems (Mac Os and Linux) you'll find that the `make` command is already installed. If not it very easy to install it. 
 
-::: {.callout-tip}
+In most Unix systems (Mac Os and Linux) you'll find that the `make` command is already installed. If not it very easy to install it.
+
+::: callout-tip
 How to install
-
 
 ```{bash}
 # update packages
@@ -115,6 +113,7 @@ make -v
 Using these files makes it easy to hide the complexity of running commands that you require to follow best practices as an example:
 
 > Running in bash
+
 ```{bash}
 #| echo: false
 
@@ -129,9 +128,9 @@ Code Linting Linting is crucial for maintaining high-quality code. It helps catc
 
 Why Lint?
 
-* Reduced bugs: Catch errors before runtime.
-* Improved readability: Enforce consistent coding standards.
-* Faster development: Identify issues quickly.
+-   Reduced bugs: Catch errors before runtime.
+-   Improved readability: Enforce consistent coding standards.
+-   Faster development: Identify issues quickly.
 
 > Within your Makefile
 
@@ -149,13 +148,12 @@ lint: activate install format # These are prerequisites: that is they must be ru
 make lint
 ```
 
-
-::: {.callout-tip}
-Instead of memorizing long commands you can store them in a Makefile and run them in a single command
-for example `make all` will run each command until the end of the file. Also, [Continous Integration/Continous Deployment](https://www.youtube.com/watch?v=2wSBAkJGcug)
+::: callout-tip
+Instead of memorizing long commands you can store them in a Makefile and run them in a single command for example `make all` will run each command until the end of the file. Also, Continuous[Integration/Continuous Deployment](https://www.youtube.com/watch?v=2wSBAkJGcug)
 :::
 
 ### Using a Makefile for Machine Learning Workflow
+
 At this juncture, you are probably acknowledging how much a Makefile is amazing. Get this you can use it with any language you prefer for data science and machine learning. Here are more [examples in Julia and R](https://gist.github.com/Shuyib/ae87774fd82c69706803725db9a681dc)
 
 Let create a Makefile to assist us with **Making** a machine learning workflow to help us handle the project better.
@@ -303,17 +301,18 @@ docker_clean:
 
 This Makefile encompasses the whole machine learning workflow. It is a great way to keep track of your work, and also to `Make` sure that you are following best practices. For example, this can encompasses your development, testing, and deployment workflow based on software engineering principles. In addition, the addition of a Dockerfile improves the reproducibility of your work. You can run the commands in the Makefile by running `make all` in the terminal. In case something goes wrong in part of the workflow other parts of the workflow will not run. This helps us isolate any potential issues that may arise, improve reliability and maintainability of the project.
 
-::: {.callout-tip}
-$(PYTHON) is a variable that is used to specify the python version that you want to use. This is important because you may have multiple versions of python installed on your machine. This ensures that the correct version of python is used.
+::: callout-tip
+\$(PYTHON) is a variable that is used to specify the python version that you want to use. This is important because you may have multiple versions of python installed on your machine. This ensures that the correct version of python is used.
 
-$(PIP) is a variable that is used to specify the pip version that you want to use. This is important because you may have multiple versions of pip installed on your machine. This ensures that the correct version of pip is used.
+\$(PIP) is a variable that is used to specify the pip version that you want to use. This is important because you may have multiple versions of pip installed on your machine. This ensures that the correct version of pip is used.
 
-It is also convenient that you can specify the $(DOCKER_CONTAINER_NAME) variable and easily change it for different versions of your project.
+It is also convenient that you can specify the \$(DOCKER_CONTAINER_NAME) variable and easily change it for different versions of your project.
 :::
 
 That's it for the Makefile. Let's move on to DVC.
 
 ### DVC
+
 Is another tool that can help you track your data science projects. Most of the time, it is used independently. But, we thought wouldn't it be awesome if we combined Makefile + DVC. That's what we did, and the gains are tremendous. With DVC, you can version control your data, models, and experiments. It allows you to track changes, collaborate with others, and reproduce your results. By integrating DVC with Makefile, you can automate your data science workflow and ensure that all the necessary steps are executed in the correct order. This combination provides a powerful and efficient way to manage your projects and make them more reproducible.
 
 Here is a simple example of how you can use DVC with Makefile.
@@ -461,18 +460,20 @@ docker_run: docker_build
 
 The difference here is that DVC has specific commands they include `dvc init`, `dvc repro`, `dvc metrics diff`, `dvc params diff`, and `rm -rf .dvc/cache`. These commands are used to track changes, compare metrics, compare hyperparameters, and clear the cache respectively. The `dvc repro` command is used to reproduce the results of the workflow. This ensures that the workflow is executed in the correct order and that all the necessary steps are executed. The `dvc metrics diff` command is used to compare the metrics of different experiments. The `dvc params diff` command is used to compare the hyperparameters of different experiments. The `rm -rf .dvc/cache` command is used to clear the cache. This is important since the cache can take up a lot of space and slow down the workflow. By clearing the cache, you can free up space and speed up the workflow.
 
+Furthermore, there's that file `dvc.yaml` that is created when you run `dvc run {parameters}`. This file is used to track the dependencies of the workflow. It specifies the input and output files of each step in the workflow. This ensures that the correct files are used as input and output for each step. This helps to ensure that the workflow is executed in the correct order and that all the necessary steps are executed. The `params.yaml` file is used to track the hyperparameters of the workflow. It specifies the hyperparameters that are used for each step in the workflow. This helps to ensure that the correct hyperparameters are used for each step. Where as, the `.dvc` and `.dvc.lock` files are used to track the changes in the workflow. They specify the files that have been changed and the changes that have been made. This helps to ensure that the workflow is reproducible and that the results can be reproduced.
 
 ### Conclusion
+
 In conclusion, combining Makefile and DVC is a powerful way to manage your data science projects. It allows you to automate your workflow, track changes, collaborate with others, and reproduce your results. By using Makefile and DVC together, you can ensure that your projects are more reproducible, reliable, and maintainable. This can help you save time, reduce errors, and improve the quality of your work. So, next time you start a new data science project, consider using Makefile and DVC to manage your workflow. You won't regret it.
 
-::: {.callout-tip}
+::: callout-tip
 We recommend visiting the [Makefile ML](datavc_makefile/README.md) & [Makefile & DVC](datavc_full/README.md) files for implementing the ideas we have put across for the Makefile and for DVC.
 :::
 
+## References
 
-## References   
-1.DVC documentation: <https://dvc.org/doc>   
-2.DVC YouTube channel: <https://www.youtube.com/playlist?list=PL7WG7YrwYcnDb0qdPl9-KEStsL-3oaEjg>   
-3.Pragmatic AI labs: <https://youtu.be/rKRG6oQf-bQ?si=4BzXMhS7owl6uWef>    
-4.Kaggle notebook by Dandelion: <https://www.kaggle.com/code/hely333/eda-regression>     
+1.DVC documentation: <https://dvc.org/doc>\
+2.DVC YouTube channel: <https://www.youtube.com/playlist?list=PL7WG7YrwYcnDb0qdPl9-KEStsL-3oaEjg>\
+3.Pragmatic AI labs: <https://youtu.be/rKRG6oQf-bQ?si=4BzXMhS7owl6uWef>\
+4.Kaggle notebook by Dandelion: <https://www.kaggle.com/code/hely333/eda-regression>\
 5.Predicting Chronic kidney Disease: <https://github.com/Shuyib/chronic-kidney-disease-kaggle>
