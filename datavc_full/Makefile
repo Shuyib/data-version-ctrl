@@ -122,3 +122,8 @@ hyperparam_diff:
 	@echo "The output folder has a model evaluation in output/model_evaluation"
 	dvc params diff
 
+clear_cache:
+	@echo "Clearing cache"
+	@echo "This is step 10: clear cache"
+	@echo "The output folder has a model evaluation in output/model_evaluation"
+	rm -rf .dvc/cache
