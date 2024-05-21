@@ -34,6 +34,43 @@ This repository contains two folders:
 
 To get started, navigate to the desired folder (`datavc_makefile` or `datavc_full`) and follow the instructions provided in the respective README file. These folders contain examples and demonstrations of how to use Makefiles and DVC in practice.
 
+## Folder structure   
+.   
+├── codegotllama.txt - # a suggestion of how to organise a Makefile with LLAMA3 8B  
+├── datavc_full - # data version control with a Makefile and DVC  
+│   ├── activate_venv.sh  
+│   ├── cleandata.py  
+│   ├── dvc.lock  
+│   ├── dvc.yaml  
+│   ├── eda.py  
+│   ├── evaluate.py   
+│   ├── import_data.sh   
+│   ├── Makefile   
+│   ├── params.yaml   
+│   ├── README.md   
+│   ├── requirements.txt   
+│   └── split_data.py   
+├── datavc_makefile - # data version control with a Makefile only    
+│   ├── activate_venv.sh  
+│   ├── cleandata.py  
+│   ├── Dockerfile  
+│   ├── eda.py  
+│   ├── evaluate.py   
+│   ├── import_data.sh   
+│   ├── Makefile   
+│   ├── README.md   
+│   ├── requirements.txt   
+│   └── split_data.py   
+├── data_version_control_presentation.html - # a summarized form of presentation in html (download and open in browser)   
+├── data_version_control_presentation.qmd - # a quarto version of the document   
+├── eda-regression.ipynb - # a notebook that I used from kaggle   
+├── LICENSE - # License information    
+├── Makefile - # a tool to shorten commands   
+├── README.md - # the current file you are reading   
+├── requirements.txt - # Python packages for quarto rendering    
+├── Screenshot from 2023-02-13-10-57-10.png - # a photo used throughout the presentation see references.    
+└── Screenshot from 2023-02-13-10-57-41.png - # a photo used throughout the presentation see references.   
+
 ## Contributing
 
 Contributions to this repository are welcome! If you'd like to contribute, please follow these steps:
@@ -57,4 +94,5 @@ This repository is licensed under the [Apache 2.0 License](https://www.apache.or
 2.DVC YouTube channel: <https://www.youtube.com/playlist?list=PL7WG7YrwYcnDb0qdPl9-KEStsL-3oaEjg>   
 3.Pragmatic AI labs: <https://youtu.be/rKRG6oQf-bQ?si=4BzXMhS7owl6uWef>    
 4.Kaggle notebook by Dandelion: <https://www.kaggle.com/code/hely333/eda-regression>     
-5.Predicting Chronic kidney Disease: <https://github.com/Shuyib/chronic-kidney-disease-kaggle>
+5.Predicting Chronic kidney Disease: <https://github.com/Shuyib/chronic-kidney-disease-kaggle>   
+6. Sparklyr course: <https://www.datacamp.com/courses/introduction-to-spark-with-sparklyr-in-r>
