@@ -73,7 +73,11 @@ To get started, navigate to the desired folder (`datavc_makefile` or `datavc_ful
 ├── README.md - # the current file you are reading   
 ├── requirements.txt - # Python packages for quarto rendering    
 ├── Screenshot from 2023-02-13-10-57-10.png - # a photo used throughout the presentation see references.    
-└── Screenshot from 2023-02-13-10-57-41.png - # a photo used throughout the presentation see references.   
+└── Screenshot from 2023-02-13-10-57-41.png - # a photo used throughout the presentation see references.  
+├── graphviz-git-dvc.dot - # a graphviz file for the git and dvc flow. Use <https://dreampuf.github.io/GraphvizOnline/> to view and edit.   
+├── graphviz-git-dvc.png - # a png file of the graphviz-git-dvc.dot.     
+├── graphviz-makefile-flow.dot - # a graphviz file for the makefile flow. Use <https://dreampuf.github.io/GraphvizOnline/> to view and edit.   
+├── graphviz-makefile-flow.png - # a png file of the graphviz-makefile-flow.dot.   
 
 ## Contributing
 
