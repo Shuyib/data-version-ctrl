@@ -1,0 +1,86 @@
+/*
+This Graphviz file represents a comparison between Git and DVC (Data Version Control) commands. 
+Each node in the graph represents a command, and the edges represent the flow of data or control. 
+The graph is divided into two clusters: one for Git and one for DVC. 
+
+This graph is created with assistance from Claude Sonnet, an AI assistant by Anthropic.
+*/
+
+digraph DVC_vs_Git {
+    node [shape=box, fontname="Arial"]
+    rankdir=LR  // Arrange nodes from left to right
+
+    // Title
+    labelloc="t"
+    label="Comparison of DVC and Git Commands\n(Created with assistance from Claude, an AI assistant by Anthropic)"
+
+    // Key
+    key [shape=none, label=<
+        <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+            <tr><td bgcolor="lightblue">Git</td><td bgcolor="lightgray">DVC</td></tr>
+            <tr><td>git init: Initialize a new Git repository</td><td>dvc init: Initialize a new DVC repository</td></tr>
+            <tr><td>git add: Stage changes for the next commit</td><td>dvc add: Track data files or models with DVC</td></tr>
+            <tr><td>git commit: Create a new commit with staged changes</td><td>dvc commit: Create a new commit with changes to DVC files</td></tr>
+            <tr><td>git push: Upload local commits to a remote repository</td><td>dvc push: Upload data files or models to a remote storage</td></tr>
+            <tr><td>git pull: Download commits from a remote repository</td><td>dvc pull: Download data files or models from a remote storage</td></tr>
+            <tr><td>git checkout: Switch branches or restore files</td><td>dvc checkout: Restore data files or models from a specific commit</td></tr>
+            <tr><td></td><td>dvc repro: Reproduce the data pipeline from the DVC files</td></tr>
+            <tr><td></td><td>dvc exp run: Run a command and capture its dependencies</td></tr>
+        </table>
+    >]
+
+    // Center the key
+    { rank=same; key; }
+
+    subgraph cluster_git {
+        label = "Git"
+        labeljust = l
+        bgcolor = "#ADD8E6" # lightblue
+        style = filled
+
+        git_init [label="git init"]
+        git_add [label="git add"]
+        git_commit [label="git commit"]
+        git_push [label="git push"]
+        git_pull [label="git pull"]
+        git_checkout [label="git checkout"]
+
+        // Arrange nodes horizontally
+        { rank=same; git_init; git_add; git_commit; git_push; }
+        { rank=same; git_pull; git_checkout; }
+
+        git_init -> git_add -> git_commit -> git_push
+        git_pull -> git_checkout
+    }
+
+    subgraph cluster_dvc {
+        label = "DVC"
+        labeljust = l
+        bgcolor = "lightgray"
+        style = filled
+
+        dvc_init [label="dvc init"]
+        dvc_add [label="dvc add"]
+        dvc_commit [label="dvc commit"]
+        dvc_push [label="dvc push"]
+        dvc_pull [label="dvc pull"]
+        dvc_checkout [label="dvc checkout"]
+        dvc_repro [label="dvc repro"]
+        dvc_exp_run [label="dvc exp run"]
+
+        // Arrange nodes horizontally
+        { rank=same; dvc_init; dvc_add; dvc_commit; dvc_push; dvc_repro; dvc_exp_run; }
+        { rank=same; dvc_pull; dvc_checkout; }
+
+        dvc_init -> dvc_add -> dvc_commit -> dvc_push
+        dvc_pull -> dvc_checkout
+        dvc_commit -> dvc_repro [style=dashed]
+        dvc_exp_run -> dvc_add [style=dashed]
+    }
+
+    // Colored edges for integration points
+    git_commit -> dvc_commit [style=dashed, color=red]
+    git_add -> dvc_add [style=dashed, color=red]
+    git_init -> dvc_init [style=dashed, color=red]
+    git_push -> dvc_push [style=dashed, color=red]
+}

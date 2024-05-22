@@ -1,0 +1,73 @@
+/* Makefile Flow Summary 
+
+Shows the flow of a typical data science project using a Makefile. The Makefile automates the process of setting up the project, importing and cleaning data, performing EDA, training and evaluating a machine learning model, and running utility tasks like formatting code, linting, cleaning up files, and formatting docstrings.
+
+This diagram is created with the assistance of Claude Sonnet, an AI assistant by Anthropic.
+*/
+digraph MakefileFlow {
+    node [shape=box, fontname="Arial"]
+    rankdir=LR  // Arrange nodes from left to right
+    nodesep=1.0 // Increase the vertical separation between nodes
+
+    // Title
+    labelloc="t"
+    label="Makefile Flow Summary\n(Created with assistance from Claude, an AI assistant by Anthropic)"
+
+    subgraph cluster_setup {
+        label = "Setup"
+        bgcolor = "#ADD8E6" # lightblue
+        style = filled
+
+        create_dirs [label="create_dirs\nCreate data, output, and model_output directories"]
+        activate_venv [label="activate_venv\nActivate Python virtual environment"]
+        install [label="install\nInstall Python packages from requirements.txt"]
+
+        {rank=same; create_dirs -> activate_venv -> install [style=invis]}
+    }
+
+    subgraph cluster_data {
+        label = "Data"
+        bgcolor = "#90EE90" # lightgreen
+        style = filled
+
+        import_data [label="import_data\nImport data from Kaggle"]
+        clean_data [label="clean_data\nClean and preprocess the data"]
+        eda [label="eda\nPerform Exploratory Data Analysis (EDA)"]
+        split_data [label="split_data\nSplit data into train and test sets"]
+
+        {rank=same; import_data -> clean_data -> eda -> split_data [style=invis]}
+    }
+
+    subgraph cluster_model {
+        label = "Model"
+        bgcolor = "#FFA07A" # lightsalmon
+        style = filled
+
+        evaluate_model [label="evaluate_model\nEvaluate the machine learning model"]
+    }
+
+    subgraph cluster_utility {
+        label = "Utility"
+        bgcolor = "#D3D3D3" # lightgray
+        style = filled
+
+        format [label="format\nFormat code using Black"]
+        lint [label="lint\nLint code using Pylint"]
+        clean [label="clean\nClean up files and directories"]
+        docstring [label="docstring\nFormat docstrings using pyment"]
+
+        {rank=same; format -> lint -> clean -> docstring [style=invis]}
+    }
+
+    // Setup flow
+    create_dirs -> activate_venv -> install
+
+    // Data flow
+    import_data -> clean_data -> eda -> split_data -> evaluate_model
+
+    // Utility targets
+    install -> format
+    install -> lint
+    install -> clean
+    install -> docstring
+}

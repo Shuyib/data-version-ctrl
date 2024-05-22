@@ -9,9 +9,13 @@ Data version control tools like DVC (Data Version Control) and Makefiles can hel
 
 In this repository, we will explore how to use DVC and Makefiles together to create reproducible and easy-to-share workflows for data science projects, competitive data science challenges, and even generative AI ambitions. By using these tools, you can ensure that your work is reproducible, sharable, and easily manageable, even when dealing with large data files or complex experiments.   
 
-> Note: This repository is intended for educational purposes and serves as a starting point for learning about data version control and Makefiles in data science projects. It is not meant to be a comprehensive guide, but rather a practical demonstration of how these tools can be used in practice.
+> Note: This repository is intended for educational purposes and serves as a starting point for learning about data version control and Makefiles in data science projects. It is not meant to be a comprehensive guide, but rather a practical demonstration of how these tools can be used in practice.   
 
-> The makefile present in main folder is to make Quarto .qmd files in .html files provided.
+> The makefile present in main folder is to make Quarto .qmd files in .html files provided.    
+
+## TL;DR    
+![Graphviz Git DVC](graphviz-git-dvc.png)   
+![Graphviz Makefile](graphviz-makefile-flow.png)
 
 ## Installation
 
