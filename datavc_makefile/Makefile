@@ -5,7 +5,7 @@
 .PHONY: all install clean format lint create_dirs activate_venv import_data clean_data eda split_data evaluate_model
 
 # run all commands
-all: create_dirs install activate_venv import_data clean_data eda split_data evaluate_model
+all: create_dirs install activate_venv import_data clean_data eda split_data evaluate_model completed_process
 
 # Specify python location in virtual environment
 # Specify pip location in virtual environment
@@ -122,6 +122,11 @@ evaluate_model: split_data
 	@echo "The output folder has a model evaluation in output/model_evaluation"
 	$(PYTHON) evaluate.py --criterion squared_error --min_samples_leaf 10 --max_leaf_nodes 5 --degree 3
 
+completed_process:
+	@echo "Notification of the completed_process"
+	@echo "This is the final step: completed_process"
+	$(PYTHON) python send_sms.py <phone_number> "The regression workflow for insurance cost prediction has been completed."
+ 
 docker_build: requirements.txt Dockerfile
 	@echo "Building docker image"
 	sudo docker build -t $(DOCKER_CONTAINER_NAME) .
