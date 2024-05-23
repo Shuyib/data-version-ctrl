@@ -41,7 +41,7 @@ stages:
       - .venv/bin/activate
       - cleandata.py
       - eda.py
-    outs:
+    plots:
       - output/eda_combined_plots.png
   split_data_kfold:
     cmd: python split_data.py --data data/transform/insurance_000.parquet --strategy kfold --test_size 0.2 --n_splits 5
@@ -76,5 +76,6 @@ stages:
       - model_output/linear_model_scaled.joblib
       - model_output/tree_model.joblib
       - output/decision_tree.png
-
- 
+  send_message:
+    cmd: python send_sms.py $USERNAME $PHONE_NUMBER "Model evaluation is complete."
+    desc: "Send a message to the user."
