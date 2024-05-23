@@ -134,7 +134,7 @@ metrics = {
 }
 
 # write the metrics to a JSON file
-with open("model_output/metrics.json", "w") as f:
+with open("model_output/metrics.json", "w", encoding='utf-8') as f:
     json.dump(metrics, f)
 
 # Draw the decision tree
