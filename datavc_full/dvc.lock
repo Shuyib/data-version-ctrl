@@ -7,8 +7,8 @@ stages:
     deps:
     - path: requirements.txt
       hash: md5
-      md5: 04b6c0edcf4b47f765974dae25aed8bf
-      size: 226
+      md5: 81d9c70ebac57e198d5b2a1d0d8a6f43
+      size: 241
   activate_venv:
     cmd: source .venv/bin/activate
     deps:
@@ -70,8 +70,8 @@ stages:
     outs:
     - path: output/eda_combined_plots.png
       hash: md5
-      md5: 1d7eaf990168fb5adf69c212343ed86e
-      size: 378228
+      md5: b3d7eb454a45a90f43e907394807d2e9
+      size: 378131
   split_data_kfold:
     cmd: python split_data.py --data data/transform/insurance_000.parquet --strategy
       kfold --test_size 0.2 --n_splits 5
@@ -113,8 +113,8 @@ stages:
       size: 18857
     - path: evaluate.py
       hash: md5
-      md5: 8a0af2d052ec9e5fb417cb7198d1a6a7
-      size: 4927
+      md5: b36e25a9ccb6c16a928bad03930fc59c
+      size: 4945
     - path: split_data.py
       hash: md5
       md5: 87c3265f9d9bf93342318dd1b8b1a3cf
@@ -142,3 +142,5 @@ stages:
       hash: md5
       md5: a616b5763f15d7921e97e064a88ca20e
       size: 85099
+  send_message:
+    cmd: python send_sms.py $USERNAME $PHONE_NUMBER "Model evaluation is complete."

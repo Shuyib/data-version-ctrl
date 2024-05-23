@@ -16,9 +16,6 @@ DOCKER_CONTAINER_NAME := ml_regression_workflow:v0.0.0
 DATA_DIR := data/
 OUTPUT_DIR := output/
 MODEL_OUTPUT_DIR := model_output/
-USERNAME := <username>
-PHONE_NUMBER := <phone_number>
-MESSAGE := "The regression workflow for insurance cost prediction has been completed."
 
 venv/bin/activate: requirements.txt
 	# create virtual environment
@@ -127,7 +124,7 @@ evaluate_model: split_data
 completed_process:
 	@echo "Notification of the completed_process"
 	@echo "This is the final step: completed_process"
-	$(PYTHON) send_sms.py $(USERNAME) $(PHONE_NUMBER) $(MESSAGE)
+	$(PYTHON) send_sms.py $(USERNAME) $(PHONE_NUMBER) "Model evaluation is complete."
 
 docker_build: requirements.txt Dockerfile
 	@echo "Building docker image"
