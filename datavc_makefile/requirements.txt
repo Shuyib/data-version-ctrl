@@ -11,3 +11,4 @@ black==24.4.2
 pylint==3.2.0
 pytest==8.2.0
 pyment
+africastalking==1.2.7
