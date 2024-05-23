@@ -17,7 +17,7 @@ Rather similar to the previous project.
 ├── cleandata.py          # Script to load, clean, and preprocess the data    
 ├── eda.py                # Script for exploratory data analysis    
 ├── evaluate.py           # Script to evaluate machine learning models    
-├── import_data.sh        # Script to import data from Kaggle
+├── import_data.sh        # Script to import data from Kaggle   
 ├── send_sms.py           # Script to send a text message with Africa's Talking API        
 ├── params.yaml           # File to store and manage hyperparameters    
 ├── requirements.txt      # Python package requirements    
