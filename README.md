@@ -49,7 +49,8 @@ To get started, navigate to the desired folder (`datavc_makefile` or `datavc_ful
 │   ├── eda.py  
 │   ├── evaluate.py   
 │   ├── import_data.sh   
-│   ├── Makefile   
+│   ├── Makefile  
+|   ├── send_sms.py      
 │   ├── params.yaml   
 │   ├── README.md   
 │   ├── requirements.txt   
@@ -62,6 +63,7 @@ To get started, navigate to the desired folder (`datavc_makefile` or `datavc_ful
 │   ├── evaluate.py   
 │   ├── import_data.sh   
 │   ├── Makefile   
+|   ├── send_sms.py    
 │   ├── README.md   
 │   ├── requirements.txt   
 │   └── split_data.py   
