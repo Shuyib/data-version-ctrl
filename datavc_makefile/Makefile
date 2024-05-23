@@ -5,7 +5,7 @@
 .PHONY: all install clean format lint create_dirs activate_venv import_data clean_data eda split_data evaluate_model
 
 # run all commands
-all: create_dirs install activate_venv import_data clean_data eda split_data evaluate_model completed_process
+all: create_dirs install activate_venv import_data clean_data eda split_data evaluate_model
 
 # Specify python location in virtual environment
 # Specify pip location in virtual environment
