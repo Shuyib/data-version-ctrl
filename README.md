@@ -9,7 +9,9 @@ Data version control tools like DVC (Data Version Control) and Makefiles can hel
 
 In this repository, we will explore how to use DVC and Makefiles together to create reproducible and easy-to-share workflows for data science projects, competitive data science challenges, and even generative AI ambitions. By using these tools, you can ensure that your work is reproducible, sharable, and easily manageable, even when dealing with large data files or complex experiments.   
 
-> Note: This repository is intended for educational purposes and serves as a starting point for learning about data version control and Makefiles in data science projects. It is not meant to be a comprehensive guide, but rather a practical demonstration of how these tools can be used in practice.   
+> You'll need to make an account and application [here](https://africastalking.com/) -- [tutorial](https://youtu.be/KZrPWw3Dt70?si=VrLmWGtPC0UAofwi), export the username and API as environment variables. In addition, setting up the [kaggle CLI](https://medium.com/@c.venkataramanan1/setting-up-kaggle-api-in-linux-b05332cde53a)    
+
+> Note: This repository is intended for educational purposes and serves as a starting point for learning about data version control and Makefiles in data science projects. It is not meant to be a comprehensive guide, but rather a practical demonstration of how these tools can be used in practice.       
 
 > The makefile present in main folder is to make Quarto .qmd files in .html files provided.    
 
@@ -106,4 +108,4 @@ This repository is licensed under the [Apache 2.0 License](https://www.apache.or
 3.Pragmatic AI labs: <https://youtu.be/rKRG6oQf-bQ?si=4BzXMhS7owl6uWef>    
 4.Kaggle notebook by Dandelion: <https://www.kaggle.com/code/hely333/eda-regression>     
 5.Predicting Chronic kidney Disease: <https://github.com/Shuyib/chronic-kidney-disease-kaggle>   
-6. Sparklyr course: <https://www.datacamp.com/courses/introduction-to-spark-with-sparklyr-in-r>
+6.Sparklyr course: <https://www.datacamp.com/courses/introduction-to-spark-with-sparklyr-in-r>
