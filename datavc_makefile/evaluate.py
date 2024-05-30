@@ -10,6 +10,20 @@ We will perform the following steps:
 - Visualize feature importance and decision boundaries
 - Narrative on the findings
 - Save the models
+
+How to run:
+-----------
+python evaluate.py --criterion mse --min_samples_leaf 25 --max_leaf_nodes 4 --degree 2
+
+Or
+make evaluate_model if Makefile is available in your working directory.
+
+Things to try:
+--------------
+- Use different metrics to evaluate the models.
+- Try using RobustScaler to scale the data. They are less prone to outliers.
+- Try different hyperparameters for the models. Especially for the decision tree model.
+- Try different models and compare the results using dvc.
 """
 
 import sys
