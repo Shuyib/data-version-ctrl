@@ -4,6 +4,12 @@ This allows us to get notifications when the makefile is done running.
 
 Usage:
     python send_sms.py <username> <phone_number> <message>
+
+NB: You need to have the AT_API_KEY,PHONE_NUMBER,USERNAME 
+environment variable set to your Africa's Talking API key.
+
+Phone number should be in the format +2547XXXXXXXX
+
 """
 
 import os
