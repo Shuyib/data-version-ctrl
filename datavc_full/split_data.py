@@ -12,6 +12,11 @@ python split_data.py --data data/transform/insurance_000.parquet --strategy trai
 
 Or
 make split_data if Makefile is available in your working directory.
+
+Things to try:
+--------------
+- Remove the smoker column from the data since it is highly correlated with the charges column.
+- Try different test sizes and see how it affects the model performance.
 """
 
 import os
