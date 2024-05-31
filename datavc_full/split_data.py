@@ -64,7 +64,7 @@ def main():
         description="Split data into train, test, and validation sets."
     )
     parser.add_argument(
-        "--data", type=str, required=True, help="Path to the input data file"
+        "--data", type=str, required=False, help="Path to the input data file"
     )
     parser.add_argument(
         "--strategy",
