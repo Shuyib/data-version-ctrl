@@ -71,8 +71,8 @@ stages:
     outs:
     - path: output/eda_combined_plots.png
       hash: md5
-      md5: 35144e87a9b2a4de811fc5327aa6a700
-      size: 378252
+      md5: 53504fb1c1bd0e0eded4a7bed23fc6c1
+      size: 377847
   split_data_kfold:
     cmd: .venv/bin/python3 split_data.py --data data/transform/insurance_000.parquet
       --strategy kfold --test_size 0.2 --n_splits 5
@@ -87,8 +87,8 @@ stages:
       size: 6325
     - path: split_data.py
       hash: md5
-      md5: e5e9e3af7b6ce10a7262e5a1b619df64
-      size: 4140
+      md5: b506c3d0d814f64fd8cf5cbe1e9508de
+      size: 4229
   split_data_train_test:
     cmd: .venv/bin/python3 split_data.py --data data/transform/insurance_000.parquet
       --strategy train_test_split --test_size 0.2
@@ -103,8 +103,8 @@ stages:
       size: 6325
     - path: split_data.py
       hash: md5
-      md5: e5e9e3af7b6ce10a7262e5a1b619df64
-      size: 4140
+      md5: b506c3d0d814f64fd8cf5cbe1e9508de
+      size: 4229
   evaluate_model:
     cmd: .venv/bin/python3 evaluate.py
     deps:
@@ -114,18 +114,18 @@ stages:
       size: 18857
     - path: evaluate.py
       hash: md5
-      md5: d2b059ef92f7a3f5c0d76c8bb47903e6
-      size: 5248
+      md5: 4b0732d84d559b697d256b17d622f590
+      size: 5327
     - path: split_data.py
       hash: md5
-      md5: e5e9e3af7b6ce10a7262e5a1b619df64
-      size: 4140
+      md5: b506c3d0d814f64fd8cf5cbe1e9508de
+      size: 4229
     params:
       params.yaml:
         evaluate_model.criterion: squared_error
-        evaluate_model.degree: 3
-        evaluate_model.max_leaf_nodes: 4
-        evaluate_model.min_samples_leaf: 20
+        evaluate_model.degree: 2
+        evaluate_model.max_leaf_nodes: 2
+        evaluate_model.min_samples_leaf: 5
     outs:
     - path: model_output/linear_model_scaled.joblib
       hash: md5
