@@ -9,56 +9,43 @@ stages:
     desc: "Upgrade pip and install dependencies"
     deps:
       - requirements.txt
-  activate_venv:
-    cmd: source .venv/bin/activate
-    desc: "Activate virtual environment"
-    deps:
-      - .venv/bin/activate
   import_data:
     cmd: ./import_data.sh
     desc: "Import data from kaggle"
-    deps:
-      - .venv/bin/activate
   clean_data:
     cmd: |
-         .venv/bin/python3 cleandata.py load_data --file_path data/original_data/insurance.csv
-         .venv/bin/python3 cleandata.py summary --file_path data/original_data/insurance.csv
-         .venv/bin/python3 cleandata.py check_missing --file_path data/original_data/insurance.csv
-         .venv/bin/python3 cleandata.py check_duplicate --file_path data/original_data/insurance.csv
-         .venv/bin/python3 cleandata.py encode_data --file_path data/original_data/insurance.csv --version 000
+         python3 cleandata.py load_data --file_path data/original_data/insurance.csv
+         python3 cleandata.py summary --file_path data/original_data/insurance.csv
+         python3 cleandata.py check_missing --file_path data/original_data/insurance.csv
+         python3 cleandata.py check_duplicate --file_path data/original_data/insurance.csv
+         python3 cleandata.py encode_data --file_path data/original_data/insurance.csv --version 000
     desc: "Loads the data, does summary statistics, checks for missing values, duplicates and encodes data into a numerical form."
     deps:
       - import_data.sh
-      - .venv/bin/activate
       - cleandata.py
       - data/original_data/insurance.csv
     outs:
       - data/transform/insurance_000.parquet
   eda:
-    cmd: .venv/bin/python3 eda.py --input data/transform/insurance_000.parquet --output output/eda_combined_plots.png
+    cmd: python3 eda.py --input data/transform/insurance_000.parquet --output output/eda_combined_plots.png
     desc: "Perform exploratory data analysis to get better understanding of your data."
     deps:
-      - .venv/bin/activate
       - cleandata.py
       - eda.py
     plots:
       - output/eda_combined_plots.png
-  split_data_kfold:
-    cmd: .venv/bin/python3 split_data.py --data data/transform/insurance_000.parquet --strategy kfold --test_size 0.2 --n_splits 5
-    desc: "Split the data into training and testing using kfold strategy."
-    deps:
-      - eda.py
-      - split_data.py
-      - data/transform/insurance_000.parquet
-  split_data_train_test:
-    cmd: .venv/bin/python3 split_data.py --data data/transform/insurance_000.parquet --strategy train_test_split --test_size 0.2
+  split_data:
+    cmd: python3 split_data.py --data data/transform/insurance_000.parquet
     desc: "Split the data into training and testing sets using train_test_split strategies."
     deps:
       - eda.py
       - split_data.py
       - data/transform/insurance_000.parquet
+    params:
+      - split_data.strategy
+      - split_data.test_size
   evaluate_model:
-    cmd: .venv/bin/python3 evaluate.py
+    cmd: python3 evaluate.py
     desc: "Evaluate the model using linear regression, Polynomial regression and Decision tree regression."
     deps:
       - split_data.py
@@ -70,12 +57,12 @@ stages:
       - evaluate_model.max_leaf_nodes
       - evaluate_model.degree
     metrics:
-      - model_output/metrics.json:
+      - metrics.json:
          cache: false
     outs:
       - model_output/linear_model_scaled.joblib
       - model_output/tree_model.joblib
       - output/decision_tree.png
   send_message:
-    cmd: .venv/bin/python3 send_sms.py $USERNAME $PHONE_NUMBER "Model evaluation is complete."
+    cmd: python3 send_sms.py $USERNAME $PHONE_NUMBER "Model evaluation is complete."
     desc: "Send a message to the user."
