@@ -21,6 +21,7 @@ make evaluate_model if Makefile is available in your working directory.
 Things to try:
 --------------
 - Use different metrics to evaluate the models.
+- Review the conditions to do do multiple linear regression. Have we met them?
 - Try using RobustScaler to scale the data. They are less prone to outliers.
 - Try different hyperparameters for the models. Especially for the decision tree model.
 - Try different models and compare the results using dvc.
