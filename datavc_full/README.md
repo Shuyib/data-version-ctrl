@@ -83,6 +83,7 @@ dvc repro import_data
 Moreover, you can use the following DVC commands for comparing metrics, parameters, and experiments:
 
 ```bash
+# test experiment
 # Compare metrics between runs (requires metrics stored in JSON format)
 dvc metrics diff
 
@@ -91,6 +92,15 @@ dvc params diff
 
 # Compare different machine learning experiments
 dvc exp show
+
+# Many experiments can be compared using the following command (grid search)
+dvc exp run -S 'evaluate_model.min_samples_leaf=25' -S 'evaluate_model.max_leaf_nodes=2' -S 'split_data.strategy=kfold split_data.test_size 0.2' --queue # min_samples_leaf range(20,25)
+
+# run all the experiments in the queue
+dvc exp run --run-all --jobs 2
+
+# apply results of the best experiment
+dvc exp apply <exp>
 ```
 
 ## References
