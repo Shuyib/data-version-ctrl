@@ -16,6 +16,7 @@ make split_data if Makefile is available in your working directory.
 Things to try:
 --------------
 - Remove the smoker column from the data since it is highly correlated with the charges column.
+- Try using specific columns only to train the model. For example, bmi, age, and gender.
 - Try different test sizes and see how it affects the model performance.
 """
 

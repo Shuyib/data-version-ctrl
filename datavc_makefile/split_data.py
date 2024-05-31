@@ -7,13 +7,14 @@ The data set will then be stored in data/train, data/test, and data/val.
 
 How to run:
 -----------
-    python split_data.py --data data/transform/insurance_000.parquet --strategy kfold --test_size 0.2 --n_splits 5
-    python split_data.py --data data/transform/insurance_000.parquet --strategy train_test_split --test_size 0.2
+python split_data.py --data data/transform/insurance_000.parquet --strategy kfold --test_size 0.2 --n_splits 5
+python split_data.py --data data/transform/insurance_000.parquet --strategy train_test_split --test_size 0.2
 
 Things to try:
 --------------
-    - Remove the smoker column from the data since it is highly correlated with the charges column.
-    - Try different test sizes and see how it affects the model performance.
+- Remove the smoker column from the data since it is highly correlated with the charges column.
+- Try using specific columns only to train the model. For example, bmi, age, and gender.
+- Try different test sizes and see how it affects the model performance.
 
 """
 
