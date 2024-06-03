@@ -53,6 +53,7 @@ format:
 
 clean:
 	@echo "Cleaning up"
+	@echo "Dvc cleanup"
 	# clean directory of cache
 	rm -rf __pycache__ &&\
 	rm -rf utils/__pycache__ &&\
@@ -63,6 +64,7 @@ clean:
 	rm -rf data
 	rm -rf output
 	rm -rf model_output
+	dvc gc -w
 	
 
 lint: activate install format
