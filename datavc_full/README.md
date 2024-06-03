@@ -73,10 +73,19 @@ After setting up the virtual environment and installing the dependencies, you ca
 
 ```bash
 # Run the entire project pipeline
-dvc repro
+dvc repro --no-commit
 
 # Run a specific step (e.g., import data)
 dvc repro import_data
+
+# Run the entire project pipeline and commit the changes
+dvc repro
+
+# To visualize the pipeline
+dvc dag
+
+# store it
+dvc dag --md >> dag.md
 ```
 > Refer to the Makefile for individual commands and steps.
 
@@ -105,6 +114,15 @@ dvc exp apply <exp>
 
 # Or in a different branch
 dvc exp branch <exp>
+
+# commit the changes to dvc and git
+dvc commit
+git commit -m "commit message"
+
+# check the status of the dvc pipeline
+dvc status
+
+
 ```
 
 ## References
