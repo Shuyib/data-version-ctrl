@@ -15,12 +15,14 @@ for cmd in kaggle unzip; do
 done
 
 # Try downloading the dataset from kaggle
-# Retry 5 times with a 15 second delay in case of failure
+# Retry 5 times with a 15 second delay in case of failure 
+# timeout will stop the download if it takes more than 60 seconds
+# If the download fails, the script will exit
 echo "Downloading dataset from kaggle"
 echo "This may take a few minutes..."
 echo "Link: https://www.kaggle.com/mirichoi0218/insurance"
 for i in {1..5}; do
-    kaggle datasets download -d mirichoi0218/insurance && break || sleep 15
+    timeout 60 kaggle datasets download -d mirichoi0218/insurance && break || sleep 15
 done
 
 # Check if the download was successful
