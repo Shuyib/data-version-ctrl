@@ -28,7 +28,7 @@ In this repository, we will explore how to use DVC and Makefiles together to cre
    - [RStudio](https://posit.co/downloads/) (with the [Quarto pane](https://quarto.org/docs/tools/rstudio.html))
    - [Jupyter Lab](https://jupyter.org/install) (with the [Quarto extension](https://quarto.org/docs/tools/jupyter-lab.html))
 
-3. Install the [anaconda](https://docs.anaconda.com/free/anaconda/install/index.html) or [miniconda](https://docs.anaconda.com/free/miniconda/miniconda-install/) if you don't have enough space for the other one. This is a software that helps you manage your virtual environments for Python, R, Julia as well as the packages they have. 
+3. Install the [anaconda](https://docs.anaconda.com/free/anaconda/install/index.html) or [miniconda](https://docs.anaconda.com/free/miniconda/miniconda-install/) if you don't have enough space for the other one. This is a software that helps you manage your virtual environments for Python, R, Julia as well as the packages they have. We recommend Py312 for this.    
 
 ## Usage
 
