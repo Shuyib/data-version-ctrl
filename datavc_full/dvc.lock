@@ -9,32 +9,16 @@ stages:
       hash: md5
       md5: 6316fee017380d38c7371af00884f769
       size: 248
-  activate_venv:
-    cmd: source .venv/bin/activate
-    deps:
-    - path: .venv/bin/activate
-      hash: md5
-      md5: cc7aabd12c892f54b0a259495b5b41a8
-      size: 2108
   import_data:
     cmd: ./import_data.sh
-    deps:
-    - path: .venv/bin/activate
-      hash: md5
-      md5: cc7aabd12c892f54b0a259495b5b41a8
-      size: 2108
   clean_data:
-    cmd: ".venv/bin/python3 cleandata.py load_data --file_path data/original_data/insurance.csv\n
-      .venv/bin/python3 cleandata.py summary --file_path data/original_data/insurance.csv\n
-      .venv/bin/python3 cleandata.py check_missing --file_path data/original_data/insurance.csv\n
-      .venv/bin/python3 cleandata.py check_duplicate --file_path data/original_data/insurance.csv\n
-      .venv/bin/python3 cleandata.py encode_data --file_path data/original_data/insurance.csv
+    cmd: "python3 cleandata.py load_data --file_path data/original_data/insurance.csv\n
+      python3 cleandata.py summary --file_path data/original_data/insurance.csv\n
+      python3 cleandata.py check_missing --file_path data/original_data/insurance.csv\n
+      python3 cleandata.py check_duplicate --file_path data/original_data/insurance.csv\n
+      python3 cleandata.py encode_data --file_path data/original_data/insurance.csv
       --version 000\n"
     deps:
-    - path: .venv/bin/activate
-      hash: md5
-      md5: cc7aabd12c892f54b0a259495b5b41a8
-      size: 2108
     - path: cleandata.py
       hash: md5
       md5: fd9adffa3c156bd01b9bdfc2a091cc62
@@ -45,21 +29,16 @@ stages:
       size: 55628
     - path: import_data.sh
       hash: md5
-      md5: 75cb5e80e9cadcd06ee4ceebcc5c0609
-      size: 1270
+      md5: 8b44b1d0aa1231750c73897e2f6156c4
+      size: 1394
     outs:
     - path: data/transform/insurance_000.parquet
       hash: md5
       md5: d064f0730660d1e626b7318b5a3373b6
       size: 18857
   eda:
-    cmd: .venv/bin/python3 eda.py --input data/transform/insurance_000.parquet --output
-      output/eda_combined_plots.png
+    cmd: python3 eda.py --input data/transform/insurance_000.parquet --output output/eda_combined_plots.png
     deps:
-    - path: .venv/bin/activate
-      hash: md5
-      md5: cc7aabd12c892f54b0a259495b5b41a8
-      size: 2108
     - path: cleandata.py
       hash: md5
       md5: fd9adffa3c156bd01b9bdfc2a091cc62
@@ -71,11 +50,10 @@ stages:
     outs:
     - path: output/eda_combined_plots.png
       hash: md5
-      md5: 35144e87a9b2a4de811fc5327aa6a700
-      size: 378252
-  split_data_kfold:
-    cmd: .venv/bin/python3 split_data.py --data data/transform/insurance_000.parquet
-      --strategy kfold --test_size 0.2 --n_splits 5
+      md5: 2357a0f5a1a7e8572429b5eeb7e1bd06
+      size: 378569
+  split_data:
+    cmd: python3 split_data.py --data data/transform/insurance_000.parquet
     deps:
     - path: data/transform/insurance_000.parquet
       hash: md5
@@ -87,26 +65,14 @@ stages:
       size: 6325
     - path: split_data.py
       hash: md5
-      md5: e5e9e3af7b6ce10a7262e5a1b619df64
-      size: 4140
-  split_data_train_test:
-    cmd: .venv/bin/python3 split_data.py --data data/transform/insurance_000.parquet
-      --strategy train_test_split --test_size 0.2
-    deps:
-    - path: data/transform/insurance_000.parquet
-      hash: md5
-      md5: d064f0730660d1e626b7318b5a3373b6
-      size: 18857
-    - path: eda.py
-      hash: md5
-      md5: c5107f8ca7babe1d53bf849a9e6dddec
-      size: 6325
-    - path: split_data.py
-      hash: md5
-      md5: e5e9e3af7b6ce10a7262e5a1b619df64
-      size: 4140
+      md5: 7fd93719183bab98b9f49ea24141d764
+      size: 4230
+    params:
+      params.yaml:
+        split_data.strategy: train_test_split
+        split_data.test_size: 0.2
   evaluate_model:
-    cmd: .venv/bin/python3 evaluate.py
+    cmd: python3 evaluate.py
     deps:
     - path: data/transform/insurance_000.parquet
       hash: md5
@@ -114,12 +80,12 @@ stages:
       size: 18857
     - path: evaluate.py
       hash: md5
-      md5: d2b059ef92f7a3f5c0d76c8bb47903e6
-      size: 5248
+      md5: 0bf609acfd3419ab254c8cbe2e48903d
+      size: 5314
     - path: split_data.py
       hash: md5
-      md5: e5e9e3af7b6ce10a7262e5a1b619df64
-      size: 4140
+      md5: 7fd93719183bab98b9f49ea24141d764
+      size: 4230
     params:
       params.yaml:
         evaluate_model.criterion: squared_error
@@ -127,14 +93,14 @@ stages:
         evaluate_model.max_leaf_nodes: 4
         evaluate_model.min_samples_leaf: 20
     outs:
+    - path: metrics.json
+      hash: md5
+      md5: e4a7abcc5a5c3ad02d4e76c254e19c63
+      size: 219
     - path: model_output/linear_model_scaled.joblib
       hash: md5
       md5: 7574909f2f0f3b0b2592e3014897a35a
       size: 655
-    - path: model_output/metrics.json
-      hash: md5
-      md5: e4a7abcc5a5c3ad02d4e76c254e19c63
-      size: 219
     - path: model_output/tree_model.joblib
       hash: md5
       md5: ee2cc7d5f5124ff764b1763d5abfed7b
@@ -144,5 +110,4 @@ stages:
       md5: a616b5763f15d7921e97e064a88ca20e
       size: 85099
   send_message:
-    cmd: .venv/bin/python3 send_sms.py $USERNAME $PHONE_NUMBER "Model evaluation is
-      complete."
+    cmd: python3 send_sms.py $USERNAME $PHONE_NUMBER "Model evaluation is complete."
