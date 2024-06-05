@@ -46,7 +46,16 @@ make install
 
 This command will install all the dependencies listed in requirements.txt in your virtual environment.
 
-> Note: The project was originally developed using Python 3.12.
+> Note: The project was originally developed using Python 3.12.   
+
+> Some issues may arise if some environment variables are not set. Make sure to export the following environment variables:
+    
+```bash
+# this is the africa's talking api key
+export AT_API_KEY="your_api_key"
+export AT_USERNAME="your_username"
+export PHONE_NUMBER="your_phone_number"
+```
 
 ## Running the Project
 
