@@ -72,7 +72,7 @@ This command will install all the dependencies listed in requirements.txt in you
 ```bash
 # this is the africa's talking api key
 export AT_API_KEY="your_api_key"
-export AT_USERNAME="your_username"
+export USERNAME="your_username"
 export PHONE_NUMBER="your_phone_number"
 ```
 
