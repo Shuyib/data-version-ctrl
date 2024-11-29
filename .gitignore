@@ -44,7 +44,6 @@ model_output/
 *.joblib
 *.pkl
 
-
 # virtualenv
 .venv/
 
