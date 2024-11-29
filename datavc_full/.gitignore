@@ -37,11 +37,16 @@ kaggle.json
 # Ignore specific files or directories
 data/
 output/
+model/
 model_output/
 *.csv
 *.parquet
 *.joblib
 *.pkl
 
+
 # virtualenv
 .venv/
+
+# checklist
+checklist.md

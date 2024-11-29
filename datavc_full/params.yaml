@@ -2,8 +2,3 @@ split_data:
   strategy: train_test_split
   test_size: 0.2
   
-evaluate_model:
-  criterion: squared_error
-  min_samples_leaf: 20
-  max_leaf_nodes: 4
-  degree: 3
