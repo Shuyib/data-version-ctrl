@@ -24,7 +24,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
+          python-version: '3.12'
           cache: 'pip'
           
       - name: Setup DVC
@@ -41,7 +41,7 @@ jobs:
           
       - name: Make the environment
         env:
-          username: ${{ secrets.username }}  # Secure storage of operational parameters
+          username: ${{ secrets.username }}  # For Kaggle API
           key: ${{ secrets.key }}
         run: |
           dvc repro create_dirs install import_data clean_data eda split_data
@@ -49,11 +49,6 @@ jobs:
       - name: Run hyperparameter tuning
         run: |
           dvc repro -f hp_tune
-          
-      - name: Save models with MLEM
-        run: |
-          mlem save model_output/tree_model.joblib -o models/tree_model.mlem
-          mlem save model_output/linear_model_scaled.joblib -o models/linear_model_scaled.mlem
           
       - name: Create metrics report
         env:
@@ -66,22 +61,6 @@ jobs:
           echo "## Hyperparameter Tuning Results Linear Regression + Polynomial Features" >> report.md
           echo "\`\`\`" >> report.md
           cat model_output/hp_tuning_results_poly_linear.md >> report.md
-          echo "\`\`\`" >> report.md
-          echo "## Feature importance Decision Tree" >> report.md
-          echo "\`\`\`" >> report.md
-          cat model_output/feature_importance_tree.png >> report.md
-          echo "\`\`\`" >> report.md
-          echo "## Decision Tree" >> report.md
-          echo "\`\`\`" >> report.md
-          cat model_output/decision_tree.png >> report.md
-          echo "\`\`\`" >> report.md
-          echo "## Residuals" >> report.md
-          echo "\`\`\`" >> report.md
-          cat model_output/residual_plot_poly_linear_model.png >> report.md
-          echo "\`\`\`" >> report.md
-          echo "## Residual plot tree model" >> report.md
-          echo "\`\`\`" >> report.md
-          cat model_output/residual_plot_tree_model.png >> report.md
           echo "\`\`\`" >> report.md
           
       - name: Create PR
