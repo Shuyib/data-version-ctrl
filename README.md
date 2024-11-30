@@ -38,7 +38,9 @@ This repository contains two folders:
 
 2. [Makefile & DVC](datavc_full/README.md): This folder demonstrates the combined usage of Makefiles and Data Version Control (DVC). DVC is a tool that helps track changes in data files, plots, machine learning models, and metrics, ensuring reproducibility and shareability of your data science workflows.
 
-To get started, navigate to the desired folder (`datavc_makefile` or `datavc_full`) and follow the instructions provided in the respective README file. These folders contain examples and demonstrations of how to use Makefiles and DVC in practice.
+To get started, navigate to the desired folder (`datavc_makefile` or `datavc_full`) and follow the instructions provided in the respective README file. These folders contain examples and demonstrations of how to use Makefiles and DVC in practice.   
+
+You can also try using the models stored in the repo using the documentation [here](https://mlem.ai/doc/user-guide/serving).    
 
 ## Folder structure   
 .   

@@ -7,8 +7,8 @@ stages:
     deps:
     - path: requirements.txt
       hash: md5
-      md5: 6316fee017380d38c7371af00884f769
-      size: 248
+      md5: 203f0c698712ca5cc65798a839846025
+      size: 292
   import_data:
     cmd: ./import_data.sh
   clean_data:
@@ -45,13 +45,13 @@ stages:
       size: 6223
     - path: eda.py
       hash: md5
-      md5: c5107f8ca7babe1d53bf849a9e6dddec
-      size: 6325
+      md5: b42951e3f7dc5c16c15edda45727e7a4
+      size: 6326
     outs:
     - path: output/eda_combined_plots.png
       hash: md5
-      md5: 2357a0f5a1a7e8572429b5eeb7e1bd06
-      size: 378569
+      md5: 7bb046986022eb7296c2ec36438bc831
+      size: 378321
   split_data:
     cmd: python3 split_data.py --data data/transform/insurance_000.parquet
     deps:
@@ -61,8 +61,8 @@ stages:
       size: 18857
     - path: eda.py
       hash: md5
-      md5: c5107f8ca7babe1d53bf849a9e6dddec
-      size: 6325
+      md5: b42951e3f7dc5c16c15edda45727e7a4
+      size: 6326
     - path: split_data.py
       hash: md5
       md5: 7fd93719183bab98b9f49ea24141d764
@@ -71,6 +71,38 @@ stages:
       params.yaml:
         split_data.strategy: train_test_split
         split_data.test_size: 0.2
+  hp_tune:
+    cmd: python3 hp_tuning.py
+    deps:
+    - path: data/transform/insurance_000.parquet
+      hash: md5
+      md5: d064f0730660d1e626b7318b5a3373b6
+      size: 18857
+    - path: hp_config.json
+      hash: md5
+      md5: ce27428d7cc498ddfced8a7534fb2729
+      size: 345
+    - path: hp_tuning.py
+      hash: md5
+      md5: 93d11beeb4f5fbf758b7e3eae175dcf4
+      size: 6199
+    outs:
+    - path: model_output/hp_best_params_poly_linear.json
+      hash: md5
+      md5: f9a4fd1c509dbd77f86474157e33fd58
+      size: 51
+    - path: model_output/hp_tuning_results_decision_tree.md
+      hash: md5
+      md5: 8a728f5a467b1d4897142f0e0eb999b1
+      size: 6199
+    - path: model_output/hp_tuning_results_poly_linear.md
+      hash: md5
+      md5: c7bc7ed60cd7d020e4833ab83f1ddde8
+      size: 775
+    - path: model_output/rfc_best_params_decision_tree.json
+      hash: md5
+      md5: 0e2ac6ab85bc4440e791888b11702378
+      size: 98
   evaluate_model:
     cmd: python3 evaluate.py
     deps:
@@ -80,34 +112,61 @@ stages:
       size: 18857
     - path: evaluate.py
       hash: md5
-      md5: 0bf609acfd3419ab254c8cbe2e48903d
-      size: 5314
+      md5: f90ca60b00a7a2f3fbecaaf8b7727282
+      size: 8150
     - path: split_data.py
       hash: md5
       md5: 7fd93719183bab98b9f49ea24141d764
       size: 4230
-    params:
-      params.yaml:
-        evaluate_model.criterion: squared_error
-        evaluate_model.degree: 3
-        evaluate_model.max_leaf_nodes: 4
-        evaluate_model.min_samples_leaf: 20
     outs:
     - path: metrics.json
       hash: md5
-      md5: e4a7abcc5a5c3ad02d4e76c254e19c63
-      size: 219
-    - path: model_output/linear_model_scaled.joblib
+      md5: bbded57891ce44b90907a026ff19ef0a
+      size: 230
+    - path: model/linear_model_scaled.mlem
       hash: md5
-      md5: 7574909f2f0f3b0b2592e3014897a35a
-      size: 655
-    - path: model_output/tree_model.joblib
+      md5: 19d989996ea9fb46a223ab07110fc154
+      size: 465
+    - path: model/tree_model.mlem
       hash: md5
-      md5: ee2cc7d5f5124ff764b1763d5abfed7b
-      size: 2049
-    - path: output/decision_tree.png
+      md5: 14b8d9fd834bda542ff6dd4cda21ccaf
+      size: 582
+    - path: model_output/decision_tree.png
       hash: md5
-      md5: a616b5763f15d7921e97e064a88ca20e
-      size: 85099
+      md5: ecd7757541fbbf58b24d5008cff1458c
+      size: 225507
+    - path: model_output/feature_importance_tree.png
+      hash: md5
+      md5: d7c353670bca0b478c1da6b3fb70d324
+      size: 19561
+    - path: model_output/predictions_poly_linear_model.md
+      hash: md5
+      md5: c76be101f202e97bcf10dd1a61a9faf0
+      size: 7559
+    - path: model_output/predictions_tree_model.md
+      hash: md5
+      md5: a45b0ba535a812611bf3f51bd68d0ea7
+      size: 7559
+    - path: model_output/residual_plot_linear_model.png
+      hash: md5
+      md5: ca63c321e8c2c3169cf625d8bfb5ba76
+      size: 71257
+    - path: model_output/residual_plot_tree_model.png
+      hash: md5
+      md5: 902811c016242991a8284f318b39ea3d
+      size: 45553
   send_message:
-    cmd: python3 send_sms.py $USERNAME $PHONE_NUMBER "Model evaluation is complete."
+    cmd: python3 send_metrics.py
+    deps:
+    - path: metrics.json
+      hash: md5
+      md5: bbded57891ce44b90907a026ff19ef0a
+      size: 230
+    - path: send_metrics.py
+      hash: md5
+      md5: e4e2731872283370ffad95a3f710273d
+      size: 1199
+    - path: send_sms.py
+      hash: md5
+      md5: a213f72667c49f01b314ccc916c2602a
+      size: 2342

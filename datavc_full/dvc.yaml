@@ -44,6 +44,22 @@ stages:
     params:
       - split_data.strategy
       - split_data.test_size
+  hp_tune:
+    cmd: python3 hp_tuning.py
+    desc: "Hyperparameter tuning for DecisionTreeRegressor and PolynomialFeatures + LinearRegression using hp_config.json."
+    deps:
+      - hp_config.json
+      - hp_tuning.py
+      - data/transform/insurance_000.parquet
+    outs:
+      - model_output/hp_tuning_results_decision_tree.md:
+          cache: false
+      - model_output/hp_tuning_results_poly_linear.md:
+          cache: false
+      - model_output/rfc_best_params_decision_tree.json:
+          cache: false
+      - model_output/hp_best_params_poly_linear.json:
+          cache: false
   evaluate_model:
     cmd: python3 evaluate.py
     desc: "Evaluate the model using linear regression, Polynomial regression and Decision tree regression."
@@ -51,18 +67,22 @@ stages:
       - split_data.py
       - evaluate.py
       - data/transform/insurance_000.parquet
-    params:
-      - evaluate_model.criterion
-      - evaluate_model.min_samples_leaf
-      - evaluate_model.max_leaf_nodes
-      - evaluate_model.degree
     metrics:
       - metrics.json:
          cache: false
     outs:
-      - model_output/linear_model_scaled.joblib
-      - model_output/tree_model.joblib
-      - output/decision_tree.png
+      - model/linear_model_scaled.mlem
+      - model/tree_model.mlem
+      - model_output/decision_tree.png
+      - model_output/residual_plot_tree_model.png
+      - model_output/residual_plot_linear_model.png
+      - model_output/feature_importance_tree.png
+      - model_output/predictions_tree_model.md
+      - model_output/predictions_poly_linear_model.md
   send_message:
-    cmd: python3 send_sms.py $USERNAME $PHONE_NUMBER "Model evaluation is complete."
-    desc: "Send a message to the user."
+    cmd: python3 send_metrics.py
+    desc: "Send model metrics via SMS"
+    deps:
+      - metrics.json
+      - send_metrics.py
+      - send_sms.py

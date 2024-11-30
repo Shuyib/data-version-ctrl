@@ -1,0 +1,7 @@
+{
+  "linear_model_mae": 4162.777950173084,
+  "tree_model_score": 0.8585700496024061,
+  "linear_model_score_val": 0.726880724531967,
+  "tree_model_score_val": 0.814564516936664,
+  "linear_model_score_poly_val": 0.8119507695656294
+}

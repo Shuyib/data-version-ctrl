@@ -1,0 +1,31 @@
+artifacts:
+  data:
+    hash: 92cce65c3d7b151024c44119225ae8fe
+    size: 2550
+    uri: tree_model
+call_orders:
+  predict:
+  - - model
+    - predict
+object_type: model
+processors:
+  model:
+    methods:
+      predict:
+        args:
+        - name: X
+          type_:
+            type: unspecified
+        - default: true
+          name: check_input
+          required: false
+          type_:
+            type: unspecified
+        name: predict
+        returns:
+          type: unspecified
+    type: sklearn
+requirements:
+- module: sklearn
+  package_name: scikit-learn
+  version: 1.5.0

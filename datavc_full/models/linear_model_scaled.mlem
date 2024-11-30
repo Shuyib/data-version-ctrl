@@ -1,0 +1,26 @@
+artifacts:
+  data:
+    hash: 6b0dc915e52708af3bde155d9bb83e27
+    size: 509
+    uri: linear_model_scaled
+call_orders:
+  predict:
+  - - model
+    - predict
+object_type: model
+processors:
+  model:
+    methods:
+      predict:
+        args:
+        - name: X
+          type_:
+            type: unspecified
+        name: predict
+        returns:
+          type: unspecified
+    type: sklearn
+requirements:
+- module: sklearn
+  package_name: scikit-learn
+  version: 1.5.0

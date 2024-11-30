@@ -1,0 +1,12 @@
+{
+    "DecisionTreeRegressor": {
+        "criterion": ["squared_error", "friedman_mse", "absolute_error", "poisson"],
+        "min_samples_leaf": [10, 20, 50],
+        "max_leaf_nodes": [4, 6, 8, 10],
+        "random_state": [1993]
+    },
+    "PolynomialFeatures": {
+        "degree": [2, 3, 4],
+        "interaction_only": [true, false]
+    }
+}

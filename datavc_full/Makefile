@@ -106,6 +106,13 @@ split_data:
 	@echo "The output folder has a split dataset in data/transform/validation"
 	@echo "For train test split"
 	dvc repro split_data
+
+hp_tuning:
+	@echo "Hyperparameter tuning"
+	@echo "This is step 7: hyperparameter tuning"
+	@echo "The output folder has a model evaluation in output/model_evaluation"
+	dvc repro hp_tune
+
 evaluate_model: 
 	@echo "Evaluating model"
 	@echo "This is step 7: evaluate model"
@@ -116,7 +123,7 @@ compare_metrics:
 	@echo "Comparing metrics"
 	@echo "This is step 8: compare metrics"
 	@echo "The output folder has a model evaluation in output/model_evaluation"
-	dvc metrics diff
+	dvc metrics diff main
 
 hyperparam_diff:
 	@echo "Comparing hyperparameters"
