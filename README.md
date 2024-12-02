@@ -51,6 +51,7 @@ To get started, navigate to the desired folder (`datavc_makefile` or `datavc_ful
 │   ├── eda.py  
 │   ├── evaluate.py   
 │   ├── import_data.sh   
+|   ├── .kaggle - # a folder for kaggle API key not included in the repository
 │   ├── Makefile  
 |   ├── send_sms.py      
 │   ├── params.yaml   
@@ -64,6 +65,7 @@ To get started, navigate to the desired folder (`datavc_makefile` or `datavc_ful
 │   ├── eda.py  
 │   ├── evaluate.py   
 │   ├── import_data.sh   
+|   ├── .kaggle - # a folder for kaggle API key not included in the repository
 │   ├── Makefile   
 |   ├── send_sms.py    
 │   ├── README.md   

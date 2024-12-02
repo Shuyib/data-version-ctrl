@@ -35,7 +35,6 @@ credentials.json
 kaggle.json
 
 # Ignore specific files or directories
-data/
 output/
 model_output/
 *.csv
@@ -45,3 +44,4 @@ model_output/
 
 # virtualenv
 .venv/
+.kaggle/
