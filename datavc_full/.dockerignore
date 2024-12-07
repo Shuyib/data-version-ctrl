@@ -45,3 +45,4 @@ model_output/
 
 # virtualenv
 .venv/
+.kaggle/

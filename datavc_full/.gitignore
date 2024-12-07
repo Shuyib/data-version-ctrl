@@ -47,6 +47,4 @@ model_output/
 
 # virtualenv
 .venv/
-
-# checklist
-checklist.md
+.kaggle
