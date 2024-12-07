@@ -44,7 +44,8 @@ model_output/
 *.joblib
 *.pkl
 
-
 # virtualenv
 .venv/
-.kaggle
+
+# checklist
+checklist.md

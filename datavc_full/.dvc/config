@@ -1,0 +1,4 @@
+[core]
+    remote = insurance_remote
+['remote "insurance_remote"']
+    url = gdrive://1LDyIIqWcx5PoIWQK-LmfLD70aIEqiyBI

@@ -1,0 +1,79 @@
+name: Hyperparameter Tuning
+
+on:
+  pull_request:
+    branches: 
+      - main
+    paths:
+      - 'hp_config.json'
+      - 'hp_tuning.py'
+
+permissions: write-all
+
+jobs:
+  hp_tune:
+    if: startsWith(github.head_ref, 'hp_tune/')
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+          
+      - name: Setup DVC
+        uses: iterative/setup-dvc@v1
+        
+      - name: Setup CML
+        uses: iterative/setup-cml@v1
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install mlem
+          
+      - name: Make the environment
+        env:
+          username: ${{ secrets.username }}  # For Kaggle API
+          key: ${{ secrets.key }}
+        run: |
+          dvc repro create_dirs install import_data clean_data eda split_data
+          
+      - name: Run hyperparameter tuning
+        run: |
+          dvc repro -f hp_tune
+          
+      - name: Create metrics report
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "## Hyperparameter Tuning Results Decision Tree" > report.md
+          echo "\`\`\`" >> report.md
+          cat model_output/hp_tuning_results_decision_tree.md >> report.md
+          echo "\`\`\`" >> report.md
+          echo "## Hyperparameter Tuning Results Linear Regression + Polynomial Features" >> report.md
+          echo "\`\`\`" >> report.md
+          cat model_output/hp_tuning_results_poly_linear.md >> report.md
+          echo "\`\`\`" >> report.md
+          
+      - name: Create PR
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cml pr create \
+            --user-email "hp-bot@cicd.ai" \
+            --user-name "HPBot" \
+            --message "Hyperparameter Tuning Results" \
+            --branch "train/${GITHUB_SHA}" \
+            --target-branch "main" \
+            --body-path "report.md" \
+            model_output/best_params_decision_tree.json \
+            model_output/best_params_poly_linear.json \
+            models/*.mlem
