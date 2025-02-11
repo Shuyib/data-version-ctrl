@@ -53,7 +53,7 @@ You can also try using the models stored in the repo using the documentation [he
 │   ├── eda.py  
 │   ├── evaluate.py   
 │   ├── import_data.sh   
-|   ├── .kaggle - # a folder for kaggle API key not included in the repository
+|   ├── .kaggle - # a folder for kaggle API key not included in the repository   
 │   ├── Makefile  
 |   ├── send_sms.py      
 │   ├── params.yaml   
@@ -67,7 +67,7 @@ You can also try using the models stored in the repo using the documentation [he
 │   ├── eda.py  
 │   ├── evaluate.py   
 │   ├── import_data.sh   
-|   ├── .kaggle - # a folder for kaggle API key not included in the repository
+|   ├── .kaggle - # a folder for kaggle API key not included in the repository   
 │   ├── Makefile   
 |   ├── send_sms.py    
 │   ├── README.md   
